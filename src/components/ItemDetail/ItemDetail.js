@@ -25,9 +25,10 @@ const ItemDetail = ({ item }) => {
             title,
             price_ticket,
             stock,
+            quantity
         }
         
-        result.addItem(item, quantity);
+        result.addItem(item);
         setQuantity(0);
         console.log(`Agregaste el producto ${title} al carrito cantidad ${quantity} un.`);
     };

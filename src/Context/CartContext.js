@@ -9,51 +9,60 @@ const CartContext = ({ children }) => {
     const [cart, setCart] = useState([]);
     const [quantity, setQuantity] = useState(0);
 
-    console.log('Carrito:',cart,'Cantidad:',quantity);
 
-    const addItem = (item, quantity) => {
-        isInCart(item)
-        ? updateItem(item, quantity)
-        : setCart([...cart, { item, quantity }]);
-        setQuantity(quantity);
+    console.log('Carrito:', cart, 'Cantidad:', quantity);
+
+    //**AGREGAR ITEM AL CARRITO */
+    const addItem = (item) => {
+        if (isInCart(item.id)) {
+            const preCart = cart.map(itemCart => {
+                if (itemCart.id === item.id) {
+                    return { ...itemCart, quantity: itemCart.quantity + item.quantity }
+                } else {
+                    return itemCart;
+                }
+            });
+            setCart(preCart);
+        } else {
+            setCart([...cart, item]);
+        }
+        setQuantity(quantity + item.quantity);
     };
 
-
-    const removeItem = (itemId) => {
-        setCart(cart.filter(item => item.id !== itemId));
+    //**ELIMINAR ITEM DEL CARRITO */
+    const removeItem = (item) => {
+        const preCart = cart.filter(itemCart => itemCart.id !== item.id);
+        setCart(preCart);
+        setQuantity(quantity - item.quantity);
     };
 
-    const clearCart = () => {
+    //**VACIAR CARRITO */
+    const clear = () => {
         setCart([]);
         setQuantity(0);
     };
 
-
-    const isInCart = (itemId) => {
-        return cart.find(item => item.id === itemId);
+    //**VERIFICAR EXISTENCIA DE ITEM EN CARRITO */
+    const isInCart = (id) => {
+        return cart.some(item => item.id === id);
     };
 
-    const updateItem = (item, quantity) => {
-        setCart(cart.map(product=> product.id === item.id ? { ...item, quantity } : item));
+    const valueContext = {
+        cart,
+        quantity,
+        addItem,
+        clear,
+        removeItem,
     };
 
+    return (
+        <div>
+            <Provider value={valueContext}>
+                {children}
+            </Provider>
 
-        const valueContext = {
-            cart,
-            quantity,
-            addItem,
-            removeItem,
-            clearCart,
-        };
+        </div>
+    )
+};
 
-        return (
-            <div>
-                <Provider value={valueContext}>
-                    {children}
-                </Provider>
-
-            </div>
-        )
-    };
-
-    export default CartContext;
+export default CartContext;
