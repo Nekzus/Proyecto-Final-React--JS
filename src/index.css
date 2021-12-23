@@ -198,4 +198,18 @@ button {
 .btn-cart {
   margin-left: 0.8rem;
 }
-
+.cart-badge{
+  font-size: 0.55rem;
+  background-color: #1059be;
+  top: -0.5rem;
+  
+}
+.cart-widget {
+  color: white;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.0001rem;
+}
+#contenido-header{
+  padding: 3.5rem;
+}

@@ -9,10 +9,10 @@ import Nav from 'react-bootstrap/Nav';
 const NavBar = () => {
     
     return (
-        <Navbar className='fixed-top-nav' position='sticky' collapseOnSelect expand="" bg="dark" variant="dark">
+        <Navbar className='fixed-top-nav fixed-top' collapseOnSelect expand="" bg="dark" variant="dark">
             <Container>
                 <NavLink className='navbar-brand' to="/">CinesNKMAX</NavLink>
-                <NavLink className='navbar-brand' to="/"><CartWidget /></NavLink>
+                <NavLink className='navbar-brand' to="/cart"><CartWidget /></NavLink>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">

@@ -5,7 +5,7 @@ import MenuCategories from '../Menues/MenuCategories';
 const NavContainer = ({ setItems }) => {
     return (
         <div>
-            <Nav className="navigation-bar justify-content-around bg-dark" sticky="top" variant="pills" defaultActiveKey="/home">
+            <Nav className="navigation-bar justify-content-around bg-dark" variant="pills" defaultActiveKey="/home">
                 <Nav.Item className="nav-container">
                     <MenuCategories setItems={setItems} />
                 <Nav.Item>
