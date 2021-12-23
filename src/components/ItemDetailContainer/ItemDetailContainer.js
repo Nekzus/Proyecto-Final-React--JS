@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import ItemDetail from '../ItemDetail/ItemDetail';
 import { useParams } from 'react-router-dom';
 import { CardGroup } from 'react-bootstrap';
@@ -12,11 +12,18 @@ const ItemDetailcontainer = () => {
     const { id } = useParams();
 
     useEffect(() => {
-        searchItemDB('movies', id, setItem);
+        let mounted = true;
+
+        if (mounted) {
+            searchItemDB('movies', id, setItem);
+        }
         if (item.length !== 0) {
             setMessage()
         } else {
             setMessage(<Loading />)
+        }
+        return () => {
+            mounted = false;
         }
     }, [id, item]);
 

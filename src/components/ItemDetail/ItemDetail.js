@@ -10,7 +10,7 @@ import RatingStars from '../Common/RatingStars';
 const ItemDetail = ({ item }) => {
     const result = useContext(context);
 
-    const [{ overview, id, backdrop_path, vote_average, release_date, stock, title, price_ticket, genre_txt }] = item;
+    const [{ overview, id, backdrop_path, vote_average, release_date, stock, title, price_ticket, genre_txt, poster_path }] = item;
     const [quantity, setQuantity] = useState(1);
     const [quantityToAdd, setQuantityToAddquantity] = useState([]);
     const navigate = useNavigate();
@@ -22,10 +22,11 @@ const ItemDetail = ({ item }) => {
         
         const item = {
             id,
-            title,
+            poster_path,
             price_ticket,
+            quantity,
             stock,
-            quantity
+            title,
         }
         
         result.addItem(item);

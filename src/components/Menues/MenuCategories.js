@@ -10,7 +10,13 @@ const MenuCategories = () => {
         navigate(`/categoria/${e.currentTarget.value}`)
     }
     useEffect(() => {
+        let mounted = true;
+        if (mounted) {
         readDataDB('categories', setCategories,'name', 'asc');
+        }
+        return () => {
+            mounted = false;
+        }
     }, [setCategories]);
 
     return (

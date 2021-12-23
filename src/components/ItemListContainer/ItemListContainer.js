@@ -11,17 +11,22 @@ const ItemListContainer = () => {
     const { id } = useParams();
 
     useEffect(() => {
+        let mounted = true;
+        if (mounted) {
+            if (!id) {
+                readDataDB('movies', setItems, 'vote_average', 'desc');
 
-        if (!id) {
-            readDataDB('movies', setItems, 'vote_average', 'desc');
-
-        } else {
-            filterDataDB('movies', 'genre_ids', id, setItems);
+            } else {
+                filterDataDB('movies', 'genre_ids', id, setItems);
+            }
         }
         if (items.length !== 0) {
             setMessage()
         } else {
             setMessage(<Loading />)
+        }
+        return () => {
+            mounted = false;
         }
     }, [id, items]);
 
