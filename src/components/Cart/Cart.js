@@ -18,8 +18,8 @@ const Cart = () => {
     return (
         <>
             {cart.length !== 0 &&
-                <div className="container cart-container">
-                    <Table responsive="sm" striped bordered hover variant="dark" className='table-cart'>
+                <div className="container-flex cart-container">
+                    <Table responsive="auto" striped bordered hover variant="dark" className='table-cart'>
                         <thead>
                             <tr>
                                 <th scope="col">Portada</th>
@@ -66,7 +66,7 @@ const Cart = () => {
                     </div>
                 </div>}
             {cart.length === 0 &&
-                <div className="container cart-container">
+                <div className="container-flex cart-container">
                     <Alert variant='dark' className='text-center'>
                         <Alert.Heading >Tu carrito esta vacío</Alert.Heading>
                         <p>
