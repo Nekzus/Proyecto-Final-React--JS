@@ -1,4 +1,5 @@
 import React, { createContext, useState } from 'react';
+import { formatCurrency } from '../components/Common/PriceItems';
 
 export const context = createContext();
 const { Provider } = context;
@@ -8,7 +9,6 @@ const CartContext = ({ children }) => {
 
     const [cart, setCart] = useState([]);
     const [quantity, setQuantity] = useState(0);
-
 
     console.log('Carrito:', cart, 'Cantidad:', quantity);
 
@@ -47,12 +47,25 @@ const CartContext = ({ children }) => {
         return cart.some(item => item.id === id);
     };
 
+    const total = () => {
+        let total = 0;
+        if (cart.length !== 0) {
+            cart.forEach(item => {
+                total += item.price_ticket * item.quantity;
+            })
+            total = formatCurrency(total);
+            return total;
+        };
+    };
+
     const valueContext = {
         cart,
         quantity,
         addItem,
         clear,
         removeItem,
+        setQuantity,
+        total,
     };
 
     return (

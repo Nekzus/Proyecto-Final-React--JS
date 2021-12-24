@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import CartWidget from '../Cart/CartWidget';
 import Navbar from 'react-bootstrap/Navbar';
 import { NavLink } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
+import { context } from '../../Context/CartContext';
 
 
 const NavBar = () => {
-    
+    const result = useContext(context);
+    const { cart } = result;
+
     return (
-        <Navbar className='fixed-top-nav fixed-top' collapseOnSelect expand="" bg="dark" variant="dark">
+        <Navbar className='fixed-top-nav fixed-top' collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container>
                 <NavLink className='navbar-brand' to="/">CinesNKMAX</NavLink>
-                <NavLink className='navbar-brand' to="/cart"><CartWidget /></NavLink>
+                {cart.length !== 0 &&
+                    <NavLink className='navbar-brand' to="/cart"><CartWidget /></NavLink>}
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">

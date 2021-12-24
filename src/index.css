@@ -206,10 +206,30 @@ button {
 }
 .cart-widget {
   color: white;
-  width: 2.5rem;
-  height: 2.5rem;
-  padding: 0.0001rem;
+  width: 3rem;
 }
 #contenido-header{
   padding: 3.5rem;
+}
+.trash-icon{
+  color: white;
+  font-size: 1.15rem;
+}
+#total-amount {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #31ca57;
+  background-color: #252729;
+  padding: 0.5rem;
+}
+.price-quantity {
+  color: #31ca57;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
+  transition: all 400ms ease;
+}
+.btn-return {
+  margin-left: 0.8rem;
+}
+.table-cart{
+  text-align: center;
 }

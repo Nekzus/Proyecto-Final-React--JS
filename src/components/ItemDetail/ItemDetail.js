@@ -6,6 +6,7 @@ import ItemCategories from '../Common/ItemCategories';
 import ItemCount from '../Common/ItemCount';
 import PriceItems from '../Common/PriceItems';
 import RatingStars from '../Common/RatingStars';
+import {HiArrowLeft} from 'react-icons/hi';
 
 const ItemDetail = ({ item }) => {
     const result = useContext(context);
@@ -19,7 +20,7 @@ const ItemDetail = ({ item }) => {
     const handleOnAdd = () => {
         setQuantityToAddquantity(quantity);
         console.log(quantity);
-        
+
         const item = {
             id,
             poster_path,
@@ -28,7 +29,7 @@ const ItemDetail = ({ item }) => {
             stock,
             title,
         }
-        
+
         result.addItem(item);
         setQuantity(0);
         console.log(`Agregaste el producto ${title} al carrito cantidad ${quantity} un.`);
@@ -37,7 +38,7 @@ const ItemDetail = ({ item }) => {
     const handleCart = () => {
         navigate(`/cart`);
     }
-    const handleContinue = () => {  
+    const handleContinue = () => {
         navigate(-1);
     }
 
@@ -45,6 +46,7 @@ const ItemDetail = ({ item }) => {
         <Card className="container item-detail bg-dark">
             <div className="row" key={id} id={id}>
                 <div className="col-md-6" id="productImage">
+                <button className="btn btn-return btn-dark mt-3 mb-3" onClick={() => {navigate(-1) }}><HiArrowLeft /> Volver</button>
                     <div className="image">
                         <img src={backdrop_path} className="card-img-top p-2" alt={title} />
                     </div>
@@ -64,9 +66,13 @@ const ItemDetail = ({ item }) => {
                             {(quantityToAdd > 0)
                                 ? <div className='selector-cantidad d-flex col-auto'>
                                     <button className="btn btn-continue btn-secondary" onClick={handleContinue}>Continuar comprando</button>
-                                    <button className="btn btn-cart btn-secondary" onClick={handleCart}>Comprar</button>
+                                    <button className="btn btn-cart btn-secondary" onClick={handleCart}>Terminar compra</button>
                                 </div>
-                                : <ItemCount className='item-count' stock={stock} onAdd={handleOnAdd} count={quantity} setCount={setQuantity} />
+                                : <div className='selector-cantidad d-flex col-auto'>
+                                    <ItemCount className='item-count' stock={stock} count={quantity} setCount={setQuantity} />
+                                    <button className="btn btn-add btn-secondary" onClick={handleOnAdd}>Agregar al carrito</button>
+                                </div>
+
                             }
                         </Card.Footer>
                     </div>
