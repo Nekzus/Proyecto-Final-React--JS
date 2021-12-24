@@ -48,18 +48,18 @@ const Cart = () => {
                         </tbody>
                     </Table>
 
-                    <div class='container'>
+                    <div className='container'>
                         <div className="d-flex justify-content-center">
                             <p className="total-amount h4">Total = <span id="total-amount">{total()}</span></p>
                         </div>
-                        <div class="row text-center">
-                            <div class="col">
+                        <div className="row text-center">
+                            <div className="col">
                                 <button className="btn btn-cart-return btn-dark mt-3 mb-3" onClick={() => { navigate(-1) }}><HiArrowLeft /> Volver</button>
                             </div>
-                            <div class="col">
+                            <div className="col">
                                 <button className="btn btn-cart-clear btn-dark mt-3 mb-3" onClick={() => clear()}><FaTrashAlt /> Vaciar carrito</button>
                             </div>
-                            <div class="col">
+                            <div className="col">
                                 <button className="btn btn-cart-check btn-dark mt-3 mb-3" onClick={() => { }}><BsCartCheckFill /> Checkout</button>
                             </div>
                         </div>
