@@ -1,5 +1,7 @@
+import { serverTimestamp } from 'firebase/firestore';
 import React, { createContext, useState } from 'react';
 import { formatCurrency } from '../components/Common/PriceItems';
+import { createDataDB, updateDataDB } from '../Firebase/functions';
 
 export const context = createContext();
 const { Provider } = context;
@@ -23,8 +25,10 @@ const CartContext = ({ children }) => {
                 }
             });
             setCart(preCart);
+            // saveData();
         } else {
             setCart([...cart, item]);
+            // saveData();
         }
         setQuantity(quantity + item.quantity);
     };
@@ -34,12 +38,14 @@ const CartContext = ({ children }) => {
         const preCart = cart.filter(itemCart => itemCart.id !== item.id);
         setCart(preCart);
         setQuantity(quantity - item.quantity);
+        // saveData();
     };
 
     //**VACIAR CARRITO */
     const clear = () => {
         setCart([]);
         setQuantity(0);
+        // saveData();
     };
 
     //**VERIFICAR EXISTENCIA DE ITEM EN CARRITO */
@@ -58,10 +64,33 @@ const CartContext = ({ children }) => {
         };
     };
 
+    const handleCheckout = () => {
+        const newOrder = {
+            buyer: {name: 'Mauricio',phone: '123456789',email: 'maseortega@gmail.com'},
+            items: cart,
+            date: serverTimestamp(),
+            total: total()
+        }
+        createDataDB('orders', newOrder);
+        console.log('carga base de datos exitosa');
+      cart.forEach(item => {
+        updateDataDB('movies', item.id, {stock: item.stock - item.quantity});
+        });
+        console.log('actualizacion base de datos exitosa');
+        clear();
+    };
+
+
+    // const saveData = () => {
+    //     localStorage.setItem('cart', JSON.stringify(cart));
+    // };
+
+
     const valueContext = {
         cart,
         quantity,
         addItem,
+        handleCheckout,
         clear,
         removeItem,
         setQuantity,

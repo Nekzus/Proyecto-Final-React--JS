@@ -10,7 +10,7 @@ import { HiArrowLeft } from 'react-icons/hi';
 
 const Cart = () => {
     const result = useContext(context);
-    const { cart, clear, removeItem, total } = result;
+    const { cart, clear, removeItem, total, handleCheckout } = result;
     const navigate = useNavigate();
     const handleCatalog = () => {
     }
@@ -60,7 +60,7 @@ const Cart = () => {
                                 <button className="btn btn-cart-clear btn-dark mt-3 mb-3" onClick={() => clear()}><FaTrashAlt /> Vaciar carrito</button>
                             </div>
                             <div className="col">
-                                <button className="btn btn-cart-check btn-dark mt-3 mb-3" onClick={() => { }}><BsCartCheckFill /> Checkout</button>
+                                <button className="btn btn-cart-check btn-dark mt-3 mb-3" onClick={handleCheckout}><BsCartCheckFill /> Checkout</button>
                             </div>
                         </div>
                     </div>
