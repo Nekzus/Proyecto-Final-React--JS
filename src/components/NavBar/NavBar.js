@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import { context } from '../../Context/CartContext';
+import { Button } from 'react-bootstrap';
 
 
 const NavBar = () => {
@@ -20,6 +21,7 @@ const NavBar = () => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
+                <NavLink to='/orders'><Button className='btn btn-history btn-dark' >Historial ordenes</Button></NavLink>
 
                     </Nav>
                 </Navbar.Collapse>

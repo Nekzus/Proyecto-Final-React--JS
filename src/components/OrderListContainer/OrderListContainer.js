@@ -1,45 +1,76 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react';
+import { Card } from 'react-bootstrap';
 import { readOrdersDB } from '../../Firebase/functions';
-
+import { convertDateString, formatCurrency } from '../../helpers/helpers';
+import Loading from '../Common/Loading';
 
 const OrderListContainer = () => {
- const [orders, setOrders] = useState([]);
+    const [message, setMessage] = useState([]);
+    const [orders, setOrders] = useState([]);
 
- useEffect  (() => {
-    readOrdersDB('orders', setOrders);
-        
-    }, [setOrders]);
+    useEffect(() => {
+        let mounted = true;
 
-        
+        if (mounted) {
+            readOrdersDB('orders', setOrders);
+        }
+        if (orders.length !== 0) {
+            setMessage()
+        } else {
+            setMessage(<Loading />)
+        }
+        return () => {
+            mounted = false;
+        }
 
+    }, [orders]);
 
-    console.log(orders);
-
-    return (
-        <div>
-             {orders.map(order => (
-                <div key={order.id}>
-                    <h1>Orden Numero: {order.id}</h1>
-                    <h1>Nombre Comprador: {order.buyer.name}</h1>
-                    <h1>Correo Comprador: {order.buyer.email}</h1>
-                    <h1>Telefono Comprador: {order.buyer.phone}</h1>
-                    <h1>Monto Total: {order.total}</h1>
-                    <h1>Fecha de Compra: {new Intl.DateTimeFormat('es-AR', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(order.date.toDate())}</h1>
-                    <h1>Detalle de la Orden:</h1>
-                    {order.items.map(item => (
-                        <div key={item.id}>
-                            <h1>Nombre del Producto: {item.title}</h1>
-                            <h1>Precio: $ {item.price_ticket}</h1>
-                            <h1>Cantidad: {item.quantity}</h1>
-                        </div>
-                    ))}
-                    <hr/>
-                </div>
-                
-            ))}
-        </div>
-    )
+    if (orders.length !== 0) {
+        return (
+            <>
+                {orders.map(order => (
+                    <div className="container p-2" key={order.id}>
+                        <Card>
+                            <Card.Header>
+                                <span className='header-order'>
+                                    <span>{convertDateString(order.date)}</span>
+                                    <span># {order.id}</span>
+                                </span>
+                            </Card.Header>
+                            {order.items.map(item => (
+                                <Card.Body key={item.id}>
+                                    <div className='row'>
+                                        <hr />
+                                        <div className='col-auto'>
+                                            <Card.Img variant='left' src={item.poster_path} width="90rem"></Card.Img>
+                                        </div>
+                                        <div className='col-auto'>
+                                            <Card.Text>Pelicula: {item.title}</Card.Text>
+                                            <Card.Text>Tickets: {item.quantity}</Card.Text>
+                                            <Card.Text>Precio: {formatCurrency(item.price_ticket)}</Card.Text>
+                                            <Card.Text>Subtotal: {formatCurrency(item.price_ticket * item.quantity)}</Card.Text>
+                                        </div>
+                                    </div>
+                                </Card.Body>
+                            ))}
+                            <hr />
+                            <div className='footer-order'>
+                                <span className='total-order col-auto'>Valor orden: <span className='total-amount'>{order.total}</span></span>
+                                {order.status === 'Pendiente' ? <span className='status-order col-auto'>Estado: <span className='status-buy-pending'>{order.status}</span></span> : <span className='status-order col-auto'>Estado: <span className='status-buy-ok'>{order.status}</span></span>}
+                            </div>
+                        </Card>
+                    </div>
+                ))}
+            </>
+        )
+    } else {
+        return (
+            <div>
+                <div className='container text-center'>{message}</div>
+            </div>
+        )
+    }
 };
 
 export default OrderListContainer;

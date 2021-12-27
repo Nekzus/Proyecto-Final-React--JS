@@ -16,14 +16,16 @@ export const readDataDB = (setCollection, setStatus, orderCamp, order) => {
 };
 
 //**BUSCAR ITEM EN DB */
-export const searchItemDB = async (setCollection, id, setStatus) => {
+export const searchItemDB = (setCollection, id, setStatus) => {
     const collectionRef = collection(db, setCollection);
     const q = query(collectionRef, where('id', '==', Number(id)));
-    const snapshot = await getDocs(q);
-    setTimeout(() => {
-        const results = snapshot.docs.map(doc => (doc.data()));
-        return setStatus(results);
-    }, 2000);
+    const unsub = onSnapshot(q, (snapshot) => {
+        setTimeout(() => {
+            const result = snapshot.docs.map(doc => (doc.data()))
+            setStatus(result)
+            return unsub;
+        }, 2000);
+    })
 };
 
 //**FILTRAR DATOS EN DB */
@@ -61,12 +63,17 @@ export const deleteDataDB = async (setCollection, id) => {
     await docRef.delete();
 };
 
+//**BUSCAR ORDENES DE COMPRA */
 export const readOrdersDB = async (setCollection, setStatus) => {
     const collectionRef = collection(db, setCollection);
-    const q = query(collectionRef);
-    const snapshot = await getDocs(q);
-    const results = snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
-    return setStatus(results);
+    const q = query(collectionRef, orderBy('date', 'desc'));
+    const unsub = onSnapshot(q, (snapshot) => {
+        setTimeout(() => {
+            const results = snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+            setStatus(results);
+            return unsub;
+        }, 2000);
+    })
 };
 
 

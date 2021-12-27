@@ -1,7 +1,7 @@
 import { serverTimestamp } from 'firebase/firestore';
 import React, { createContext, useState } from 'react';
-import { formatCurrency } from '../components/Common/PriceItems';
 import { createDataDB, updateDataDB } from '../Firebase/functions';
+import { formatCurrency } from '../helpers/helpers';
 
 export const context = createContext();
 const { Provider } = context;
@@ -69,6 +69,7 @@ const CartContext = ({ children }) => {
             buyer: {name: 'Mauricio',phone: '123456789',email: 'maseortega@gmail.com'},
             items: cart,
             date: serverTimestamp(),
+            status: 'Pendiente',
             total: total()
         }
         createDataDB('orders', newOrder);

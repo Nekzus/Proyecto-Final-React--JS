@@ -6,7 +6,7 @@ import Loading from '../Common/Loading';
 
 import { searchItemDB } from '../../Firebase/functions';
 
-const ItemDetailcontainer = () => {
+const ItemDetailContainer = () => {
     const [message, setMessage] = useState([]);
     const [item, setItem] = useState([]);
     const { id } = useParams();
@@ -44,4 +44,4 @@ const ItemDetailcontainer = () => {
     }
 };
 
-export default ItemDetailcontainer;
+export default ItemDetailContainer;

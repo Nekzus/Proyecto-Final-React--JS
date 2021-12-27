@@ -1,13 +1,6 @@
 import React from 'react'
+import { formatCurrency } from '../../helpers/helpers';
 
-//**DAR FORMATO DE MONEDA A LOS MONTOS */
-export const formatCurrency = (value) => {
-    return new Intl.NumberFormat('es-AR', {
-        style: 'currency',
-        currency: 'ARS',
-        minimumFractionDigits: 2,
-    }).format(value);
-};
 
 const PriceItems = ({ value }) => {
 

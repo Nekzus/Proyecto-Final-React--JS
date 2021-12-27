@@ -1,6 +1,5 @@
 import React from 'react'
 import { Button, Form, FormControl, Nav } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
 import MenuCategories from '../Menues/MenuCategories';
 
 const NavContainer = ({ setItems }) => {
@@ -10,7 +9,7 @@ const NavContainer = ({ setItems }) => {
                 <Nav.Item className="nav-container">
                     <MenuCategories setItems={setItems} />
                 <Nav.Item>
-                <NavLink to='/order'><Button >Historial ordenes</Button></NavLink>
+            
                 </Nav.Item>
                 </Nav.Item>
                 <Nav.Item>

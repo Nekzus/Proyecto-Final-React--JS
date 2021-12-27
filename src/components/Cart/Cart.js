@@ -1,12 +1,12 @@
 import React, { useContext } from 'react'
 import { Alert, Image, Table } from 'react-bootstrap';
 import { context } from '../../Context/CartContext';
-import { formatCurrency } from '../Common/PriceItems';
 import { IoTrashOutline } from 'react-icons/io5';
 import { FaTrashAlt } from 'react-icons/fa';
 import { BsCartCheckFill } from 'react-icons/bs';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { HiArrowLeft } from 'react-icons/hi';
+import { formatCurrency } from '../../helpers/helpers';
 
 const Cart = () => {
     const result = useContext(context);
