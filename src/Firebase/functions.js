@@ -9,7 +9,8 @@ export const readDataDB = (setCollection, setStatus, orderCamp, order) => {
     const q = query(collectionRef, orderBy(orderCamp, order));
     const unsub = onSnapshot(q, (snapshot) => {
         setTimeout(() => {
-            setStatus(snapshot.docs.map(doc => (doc.data())))
+            const results = snapshot.docs.map(doc => (doc.data()));
+            setStatus(results);
             return unsub;
         }, 2000);
     })
@@ -21,7 +22,7 @@ export const searchItemDB = (setCollection, id, setStatus) => {
     const q = query(collectionRef, where('id', '==', Number(id)));
     const unsub = onSnapshot(q, (snapshot) => {
         setTimeout(() => {
-            const result = snapshot.docs.map(doc => (doc.data()))
+            const result = snapshot.docs.map(doc => (doc.data()));
             setStatus(result)
             return unsub;
         }, 2000);
@@ -29,14 +30,16 @@ export const searchItemDB = (setCollection, id, setStatus) => {
 };
 
 //**FILTRAR DATOS EN DB */
-export const filterDataDB = async (setCollection, setCamp, id, setStatus) => {
+export const filterDataDB = (setCollection, setCamp, id, setStatus) => {
     const collectionRef = collection(db, setCollection);
     const q = query(collectionRef, where(setCamp, 'array-contains', Number(id)));
-    const snapshot = await getDocs(q);
-    setTimeout(() => {
-        const results = snapshot.docs.map(doc => (doc.data()));
-        return setStatus(results);
-    }, 2000);
+    const unsub = onSnapshot(q, (snapshot) => {
+        setTimeout(() => {
+            const results = snapshot.docs.map(doc => (doc.data()));
+            setStatus(results);
+            return unsub;
+        }, 2000);
+    })
 };
 
 //**WRITE DB **/
@@ -64,7 +67,7 @@ export const deleteDataDB = async (setCollection, id) => {
 };
 
 //**BUSCAR ORDENES DE COMPRA */
-export const readOrdersDB = async (setCollection, setStatus) => {
+export const readOrdersDB = (setCollection, setStatus) => {
     const collectionRef = collection(db, setCollection);
     const q = query(collectionRef, orderBy('date', 'desc'));
     const unsub = onSnapshot(q, (snapshot) => {

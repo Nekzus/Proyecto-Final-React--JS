@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { useEffect } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from 'react'
 import { Card } from 'react-bootstrap';
 import { readOrdersDB } from '../../Firebase/functions';
 import { convertDateString, formatCurrency } from '../../helpers/helpers';
@@ -10,21 +10,14 @@ const OrderListContainer = () => {
     const [orders, setOrders] = useState([]);
 
     useEffect(() => {
-        let mounted = true;
-
-        if (mounted) {
-            readOrdersDB('orders', setOrders);
-        }
-        if (orders.length !== 0) {
-            setMessage()
-        } else {
-            setMessage(<Loading />)
-        }
+        const abortController = new AbortController();
+        readOrdersDB('orders', setOrders);
+        (orders.length !== 0) ? setMessage() : setMessage(<Loading />);
         return () => {
-            mounted = false;
+            abortController.abort();
+            console.log('cleanup orderlistcontainer');
         }
-
-    }, [orders]);
+    }, [setOrders]);
 
     if (orders.length !== 0) {
         return (
@@ -56,7 +49,7 @@ const OrderListContainer = () => {
                             ))}
                             <hr />
                             <div className='footer-order'>
-                                <span className='total-order col-auto'>Valor orden: <span className='total-amount'>{order.total}</span></span>
+                                <span className='total-order col-auto'>Valor orden: <span className='total-amount-order'>{order.total}</span></span>
                                 {order.status === 'Pendiente' ? <span className='status-order col-auto'>Estado: <span className='status-buy-pending'>{order.status}</span></span> : <span className='status-order col-auto'>Estado: <span className='status-buy-ok'>{order.status}</span></span>}
                             </div>
                         </Card>

@@ -10,12 +10,11 @@ const MenuCategories = () => {
         navigate(`/categoria/${e.currentTarget.value}`)
     }
     useEffect(() => {
-        let mounted = true;
-        if (mounted) {
-        readDataDB('categories', setCategories,'name', 'asc');
-        }
+        const abortController = new AbortController();
+        readDataDB('categories', setCategories, 'name', 'asc');
         return () => {
-            mounted = false;
+            abortController.abort();
+            console.log('cleanup menucategories');
         }
     }, [setCategories]);
 

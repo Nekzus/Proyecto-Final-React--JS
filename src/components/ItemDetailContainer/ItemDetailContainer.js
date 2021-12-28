@@ -1,9 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import ItemDetail from '../ItemDetail/ItemDetail';
 import { useParams } from 'react-router-dom';
 import { CardGroup } from 'react-bootstrap';
 import Loading from '../Common/Loading';
-
 import { searchItemDB } from '../../Firebase/functions';
 
 const ItemDetailContainer = () => {
@@ -12,20 +12,14 @@ const ItemDetailContainer = () => {
     const { id } = useParams();
 
     useEffect(() => {
-        let mounted = true;
-
-        if (mounted) {
-            searchItemDB('movies', id, setItem);
-        }
-        if (item.length !== 0) {
-            setMessage()
-        } else {
-            setMessage(<Loading />)
-        }
+        const abortController = new AbortController();
+        searchItemDB('movies', id, setItem);
+        (item.length !== 0) ? setMessage() : setMessage(<Loading />);
         return () => {
-            mounted = false;
+            abortController.abort();
+            console.log('cleanup itemdetailcontainer');
         }
-    }, [id, item]);
+    }, [id, setItem]);
 
     if (item.length !== 0) {
         return (

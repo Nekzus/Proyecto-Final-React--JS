@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import ItemList from '../ItemList/ItemList';
 import { filterDataDB, readDataDB } from '../../Firebase/functions';
@@ -11,25 +12,24 @@ const ItemListContainer = () => {
     const { id } = useParams();
 
     useEffect(() => {
-        let mounted = true;
-        if (mounted) {
-            if (!id) {
-                readDataDB('movies', setItems, 'vote_average', 'desc');
-
-            } else {
-                filterDataDB('movies', 'genre_ids', id, setItems);
-            }
-        }
-        if (items.length !== 0) {
-            setMessage()
-        } else {
-            setMessage(<Loading />)
-        }
+        const abortController = new AbortController();
+        (!id)
+            ? readDataDB('movies', setItems, 'vote_average', 'desc')
+            : filterDataDB('movies', 'genre_ids', id, setItems);
         return () => {
-            mounted = false;
+            abortController.abort();
+            console.log('cleanup itemlistcontainer')
         }
-    }, [id, items]);
+    }, [id, setItems]);
 
+    useEffect(() => {
+        const abortController = new AbortController();
+        (items.length !== 0) ? setMessage() : setMessage(<Loading />);
+        return () => {
+            abortController.abort();
+            console.log('cleanup itemlistcontainer msg')
+        }
+    }, [items]);
 
     return (
         <main>
