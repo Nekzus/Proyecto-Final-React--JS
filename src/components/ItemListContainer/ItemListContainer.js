@@ -9,24 +9,24 @@ import Loading from '../Common/Loading';
 const ItemListContainer = () => {
     const [message, setMessage] = useState([]);
     const [items, setItems] = useState([]);
+    const [isMounted, setIsMounted] = useState(false);
     const { id } = useParams();
 
     useEffect(() => {
-        const abortController = new AbortController();
+        setIsMounted(true);
         (!id)
-            ? readDataDB('movies', setItems, 'vote_average', 'desc')
-            : filterDataDB('movies', 'genre_ids', id, setItems);
+            ? isMounted && readDataDB('movies', setItems, 'vote_average', 'desc')
+            : isMounted && filterDataDB('movies', 'genre_ids', id, setItems);
+
         return () => {
-            abortController.abort();
-            console.log('cleanup itemlistcontainer')
+            setIsMounted(false);
+            console.log('cleanup itemlistcontainer');
         }
-    }, [id, setItems]);
+    }, [id, setItems, isMounted]);
 
     useEffect(() => {
-        const abortController = new AbortController();
         (items.length !== 0) ? setMessage() : setMessage(<Loading />);
         return () => {
-            abortController.abort();
             console.log('cleanup itemlistcontainer msg')
         }
     }, [items]);

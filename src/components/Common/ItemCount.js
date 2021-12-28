@@ -1,10 +1,6 @@
 import React from 'react';
 
-const ItemCount = ({ stock, count, setCount }) => {
-
-
-    const handleAdd = () => setCount(count + 1);
-    const handleSubtract = () => setCount(count - 1);
+const ItemCount = ({ stock, count, handleAdd, handleSubtract }) => {
 
     return (
         <>

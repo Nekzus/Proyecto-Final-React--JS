@@ -8,16 +8,17 @@ import Loading from '../Common/Loading';
 const OrderListContainer = () => {
     const [message, setMessage] = useState([]);
     const [orders, setOrders] = useState([]);
+    const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
-        const abortController = new AbortController();
-        readOrdersDB('orders', setOrders);
+        setIsMounted(true);
+        isMounted && readOrdersDB('orders', setOrders);
         (orders.length !== 0) ? setMessage() : setMessage(<Loading />);
         return () => {
-            abortController.abort();
+            setIsMounted(false);
             console.log('cleanup orderlistcontainer');
         }
-    }, [setOrders]);
+    }, [setOrders, isMounted]);
 
     if (orders.length !== 0) {
         return (

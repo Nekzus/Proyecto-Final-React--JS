@@ -16,10 +16,13 @@ const ItemDetail = ({ item }) => {
     const [quantityToAdd, setQuantityToAddquantity] = useState([]);
     const navigate = useNavigate();
 
+    const handleAdd = () => setQuantity(quantity + 1);
+    const handleSubtract = () => setQuantity(quantity - 1);
 
     const handleOnAdd = () => {
         setQuantityToAddquantity(quantity);
         console.log(quantity);
+
 
         const item = {
             id,
@@ -70,7 +73,7 @@ const ItemDetail = ({ item }) => {
                                         <button className="btn btn-cart btn-secondary" onClick={handleCart}>Terminar compra</button>
                                     </div>)
                                     : (<div className='selector-cantidad d-flex col-auto'>
-                                        <ItemCount className='item-count' stock={stock} count={quantity} setCount={setQuantity} />
+                                        <ItemCount className='item-count' stock={stock} count={quantity} handleAdd={handleAdd} handleSubtract={handleSubtract} />
                                         <button className="btn btn-add btn-secondary" onClick={handleOnAdd}>Agregar al carrito</button>
                                     </div>))
                                 : (<div className='selector-cantidad d-flex col-auto'>

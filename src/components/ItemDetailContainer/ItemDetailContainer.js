@@ -9,17 +9,18 @@ import { searchItemDB } from '../../Firebase/functions';
 const ItemDetailContainer = () => {
     const [message, setMessage] = useState([]);
     const [item, setItem] = useState([]);
+    const [isMounted, setIsMounted] = useState(false);
     const { id } = useParams();
 
     useEffect(() => {
-        const abortController = new AbortController();
-        searchItemDB('movies', id, setItem);
+        setIsMounted(true);
+        isMounted && searchItemDB('movies', id, setItem);
         (item.length !== 0) ? setMessage() : setMessage(<Loading />);
         return () => {
-            abortController.abort();
+            setIsMounted(false);
             console.log('cleanup itemdetailcontainer');
         }
-    }, [id, setItem]);
+    }, [id, setItem, isMounted]);
 
     if (item.length !== 0) {
         return (

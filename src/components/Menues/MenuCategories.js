@@ -4,19 +4,20 @@ import { readDataDB } from '../../Firebase/functions';
 
 const MenuCategories = () => {
     const [categories, setCategories] = useState([]);
+    const [isMounted, setIsMounted] = useState(false);
     const navigate = useNavigate();
 
     const handleSelect = (e) => {
         navigate(`/categoria/${e.currentTarget.value}`)
     }
     useEffect(() => {
-        const abortController = new AbortController();
-        readDataDB('categories', setCategories, 'name', 'asc');
+        setIsMounted(true);
+        isMounted && readDataDB('categories', setCategories, 'name', 'asc');
         return () => {
-            abortController.abort();
+            setIsMounted(false);
             console.log('cleanup menucategories');
         }
-    }, [setCategories]);
+    }, [setCategories, isMounted]);
 
     return (
 
