@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react'
-import { Card } from 'react-bootstrap';
+import { Card, Image } from 'react-bootstrap';
 import { readOrdersDB } from '../../Firebase/functions';
 import { convertDateString, formatCurrency } from '../../helpers/helpers';
 import Loading from '../Common/Loading';
@@ -37,7 +37,7 @@ const OrderListContainer = () => {
                                     <div className='row'>
                                         <hr />
                                         <div className='col-auto'>
-                                            <Card.Img variant='left' src={item.poster_path} width="90rem"></Card.Img>
+                                            <Image src={item.poster_path} width="90rem" rounded className='img-fluid' />
                                         </div>
                                         <div className='col-auto'>
                                             <Card.Text>Pelicula: {item.title}</Card.Text>

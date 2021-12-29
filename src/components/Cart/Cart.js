@@ -34,8 +34,8 @@ const Cart = () => {
                         <tbody>
                             {
                                 cart.map(item => (
-                                    <tr key={item.id}>
-                                        <td><Image src={item.poster_path} width="80rem" rounded /></td>
+                                    <tr key={item.id} className="td-table">
+                                        <td><Image src={item.poster_path} width="80rem" rounded className='img-fluid' /></td>
                                         <td>{item.id}</td>
                                         <td>{item.title}</td>
                                         <td>{formatCurrency(item.price_ticket)}</td>
@@ -43,6 +43,8 @@ const Cart = () => {
                                         <td>{formatCurrency(item.price_ticket * item.quantity)}</td>
                                         <td><button className='btn btn-default btn-borrar' onClick={() => removeItem(item)}><span className='trash-icon'><IoTrashOutline /></span></button></td>
                                     </tr>
+
+
                                 ))
                             }
                         </tbody>

@@ -25,10 +25,8 @@ const CartContext = ({ children }) => {
                 }
             });
             setCart(preCart);
-            // saveData();
         } else {
             setCart([...cart, item]);
-            // saveData();
         }
         setQuantity(quantity + item.quantity);
     };
@@ -45,7 +43,6 @@ const CartContext = ({ children }) => {
     const clear = () => {
         setCart([]);
         setQuantity(0);
-        // saveData();
     };
 
     //**VERIFICAR EXISTENCIA DE ITEM EN CARRITO */
@@ -66,7 +63,7 @@ const CartContext = ({ children }) => {
 
     const handleCheckout = () => {
         const newOrder = {
-            buyer: {name: 'Mauricio',phone: '123456789',email: 'maseortega@gmail.com'},
+            buyer: { name: 'Mauricio', phone: '123456789', email: 'maseortega@gmail.com' },
             items: cart,
             date: serverTimestamp(),
             status: 'Pendiente',
@@ -74,18 +71,12 @@ const CartContext = ({ children }) => {
         }
         createDataDB('orders', newOrder);
         console.log('carga base de datos exitosa');
-      cart.forEach(item => {
-        updateDataDB('movies', item.id, {stock: item.stock - item.quantity});
+        cart.forEach(item => {
+            updateDataDB('movies', item.id, { stock: item.stock - item.quantity });
         });
         console.log('actualizacion base de datos exitosa');
         clear();
     };
-
-
-    // const saveData = () => {
-    //     localStorage.setItem('cart', JSON.stringify(cart));
-    // };
-
 
     const valueContext = {
         cart,

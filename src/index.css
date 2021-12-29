@@ -232,6 +232,7 @@ button {
 }
 .table-cart {
   text-align: center;
+  vertical-align: middle;
 }
 .header-order {
   background-color: rgb(53, 51, 51);
