@@ -87,6 +87,7 @@ const CartContext = ({ children }) => {
         removeItem,
         setQuantity,
         total,
+        isInCart,
     };
 
     return (

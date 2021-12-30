@@ -2,15 +2,15 @@ import React from 'react'
 import { Button, Form, FormControl, Nav } from 'react-bootstrap';
 import MenuCategories from '../Menues/MenuCategories';
 
-const NavContainer = ({ setItems }) => {
+const NavContainer = () => {
     return (
         <div>
             <Nav className="navigation-bar justify-content-around bg-dark" variant="pills" defaultActiveKey="/home">
                 <Nav.Item className="nav-container">
-                    <MenuCategories setItems={setItems} />
-                <Nav.Item>
-            
-                </Nav.Item>
+                    <MenuCategories />
+                    <Nav.Item>
+
+                    </Nav.Item>
                 </Nav.Item>
                 <Nav.Item>
                     <Form className="d-flex">

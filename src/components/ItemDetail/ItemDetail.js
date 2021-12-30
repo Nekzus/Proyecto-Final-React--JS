@@ -7,20 +7,19 @@ import ItemCount from '../Common/ItemCount';
 import PriceItems from '../Common/PriceItems';
 import RatingStars from '../Common/RatingStars';
 import { HiArrowLeft } from 'react-icons/hi';
+import ItemStatus from '../Common/ItemStatus';
 
 const ItemDetail = ({ item }) => {
     const result = useContext(context);
-
+    const { addItem, isInCart } = result;
     const [{ overview, id, backdrop_path, vote_average, release_date, stock, title, price_ticket, genre_txt, poster_path }] = item;
     const [quantity, setQuantity] = useState(1);
-    const [quantityToAdd, setQuantityToAddquantity] = useState([]);
     const navigate = useNavigate();
 
     const handleAdd = () => setQuantity(quantity + 1);
     const handleSubtract = () => setQuantity(quantity - 1);
 
     const handleOnAdd = () => {
-        setQuantityToAddquantity(quantity);
         console.log(quantity);
 
 
@@ -33,7 +32,7 @@ const ItemDetail = ({ item }) => {
             title,
         }
 
-        result.addItem(item);
+        addItem(item);
         setQuantity(0);
         console.log(`Agregaste el producto ${title} al carrito cantidad ${quantity} un.`);
     };
@@ -50,7 +49,8 @@ const ItemDetail = ({ item }) => {
             <div className="row" key={id} id={id}>
                 <div className="col-md-6" id="productImage">
                     <button className="btn btn-return btn-dark mt-3 mb-3" onClick={() => { navigate(-1) }}><HiArrowLeft /> Volver</button>
-                    <div className="image">
+                    <div className="image-detail" >
+                        {<ItemStatus itemId={id} stock={stock} />}
                         <img src={backdrop_path} className="card-img-top p-2" alt={title} />
                     </div>
                 </div>
@@ -67,7 +67,7 @@ const ItemDetail = ({ item }) => {
                         </Card.Body>
                         <Card.Footer className='card-footer'>
                             {stock > 0
-                                ? ((quantityToAdd > 0)
+                                ? ((isInCart(id))
                                     ? (<div className='selector-cantidad d-flex col-auto'>
                                         <button className="btn btn-continue btn-secondary" onClick={handleContinue}>Continuar comprando</button>
                                         <button className="btn btn-cart btn-secondary" onClick={handleCart}>Terminar compra</button>

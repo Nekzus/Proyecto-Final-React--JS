@@ -34,7 +34,7 @@ const ItemListContainer = () => {
     return (
         <main>
             <div className='container'>
-                <NavContainer setItems={setItems} />
+                <NavContainer />
                 <div className='container text-center'>{message}</div>
                 <ItemList items={items} />
             </div>

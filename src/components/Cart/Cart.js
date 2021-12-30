@@ -43,8 +43,6 @@ const Cart = () => {
                                         <td>{formatCurrency(item.price_ticket * item.quantity)}</td>
                                         <td><button className='btn btn-default btn-borrar' onClick={() => removeItem(item)}><span className='trash-icon'><IoTrashOutline /></span></button></td>
                                     </tr>
-
-
                                 ))
                             }
                         </tbody>
