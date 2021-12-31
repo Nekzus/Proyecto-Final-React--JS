@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { CardGroup } from 'react-bootstrap';
 import Loading from '../Common/Loading';
 import { searchItemDB } from '../../Firebase/functions';
+import { memo } from 'react';
 
 const ItemDetailContainer = () => {
     const [message, setMessage] = useState(['']);
@@ -50,4 +51,4 @@ const ItemDetailContainer = () => {
     }
 };
 
-export default ItemDetailContainer;
+export default memo(ItemDetailContainer);

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 
 
 const ItemCategories = ({ genre_txt }) => {
@@ -6,7 +6,7 @@ const ItemCategories = ({ genre_txt }) => {
     return (
         
                 <div className="d-flex widget-categories">
-            {genre_txt.map((category, index) => (
+            {genre_txt.map((category, index)  => (
                     <span key={index} className="badge badge-secondary widget-cat">{category}</span>
             ))}
                 </div>
@@ -15,4 +15,4 @@ const ItemCategories = ({ genre_txt }) => {
 
 }
 
-export default ItemCategories;
+export default memo(ItemCategories);

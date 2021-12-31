@@ -1,4 +1,5 @@
 import React from 'react'
+import { memo } from 'react';
 import { formatCurrency } from '../../helpers/helpers';
 
 
@@ -12,4 +13,4 @@ const PriceItems = ({ value }) => {
     )
 };
 
-export default PriceItems;
+export default memo(PriceItems);

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { RiStarSFill, RiStarHalfSFill } from 'react-icons/ri';
 
 const RatingStars = ({rating}) => {
@@ -9,4 +9,4 @@ const RatingStars = ({rating}) => {
     )
 }
 
-export default RatingStars;
+export default memo(RatingStars);

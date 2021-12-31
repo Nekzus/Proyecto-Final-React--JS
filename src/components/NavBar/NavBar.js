@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, memo } from 'react';
 import CartWidget from '../Cart/CartWidget';
 import Navbar from 'react-bootstrap/Navbar';
 import { NavLink } from 'react-router-dom';
@@ -30,4 +30,4 @@ const NavBar = () => {
     )
 };
 
-export default NavBar;
+export default memo(NavBar);

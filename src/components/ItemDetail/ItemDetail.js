@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useCallback, memo } from 'react';
 import { Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { context } from '../../Context/CartContext';
@@ -21,10 +21,10 @@ const ItemDetail = ({ item }) => {
     })
     
 
-    const handleAdd = () => setQuantity(quantity + 1);
-    const handleSubtract = () => setQuantity(quantity - 1);
+    const handleAdd = useCallback(() => setQuantity(quantity + 1), [quantity]);
+    const handleSubtract = useCallback(() => setQuantity(quantity - 1), [quantity]);
 
-    const handleOnAdd = () => {
+    const handleOnAdd = useCallback(() => {
         console.log(quantity);
 
 
@@ -40,7 +40,7 @@ const ItemDetail = ({ item }) => {
         addItem(item);
         setQuantity(0);
         console.log(`Agregaste el producto ${title} al carrito cantidad ${quantity} un.`); //TODO: Remove
-    };
+    }, [addItem, quantity, title, id, poster_path, price_ticket, stock]);
 
     const handleCart = () => {
         navigate(`/cart`);
@@ -93,4 +93,4 @@ const ItemDetail = ({ item }) => {
     )
 }
 
-export default ItemDetail;
+export default memo(ItemDetail);

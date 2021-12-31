@@ -14,6 +14,7 @@ const MenuCategories = () => {
     const handleSelect = (e) => {
         navigate(`/categoria/${e.currentTarget.value}`)
     }
+    
     useEffect(() => {
         setIsMounted(true);
         isMounted && readDataDB('categories', setCategories, 'name', 'asc');

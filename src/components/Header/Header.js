@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { NavLink } from 'react-router-dom';
+import { memo } from 'react';
 
 const Header = () => {
     console.log('Render header');
@@ -21,4 +22,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default memo(Header);
