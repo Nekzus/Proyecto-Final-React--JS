@@ -7,20 +7,31 @@ import Loading from '../Common/Loading';
 import { searchItemDB } from '../../Firebase/functions';
 
 const ItemDetailContainer = () => {
-    const [message, setMessage] = useState([]);
+    const [message, setMessage] = useState(['']);
     const [item, setItem] = useState([]);
     const [isMounted, setIsMounted] = useState(false);
     const { id } = useParams();
 
     useEffect(() => {
+    console.log('Render itemdetailcontainer'); //TODO: remove
+    });
+
+    useEffect(() => {
         setIsMounted(true);
         isMounted && searchItemDB('movies', id, setItem);
-        (item.length !== 0) ? setMessage() : setMessage(<Loading />);
+
         return () => {
             setIsMounted(false);
-            console.log('cleanup itemdetailcontainer');
+            console.log('cleanup itemdetailcontainer'); //TODO: remove
         }
     }, [id, setItem, isMounted]);
+
+    useEffect(() => {
+        (item.length !== 0) ? setMessage('') : setMessage(<Loading />);
+        return () => {
+            console.log('cleanup itemdetailcontainer msg'); //TODO: remove
+        }
+    }, [item]);
 
     if (item.length !== 0) {
         return (

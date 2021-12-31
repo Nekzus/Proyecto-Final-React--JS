@@ -3,6 +3,7 @@ import AppRouter from '../AppRouter/AppRouter';
 
 
 const Main = () => {
+    console.log('Render Main');
     return (
         <main>
 

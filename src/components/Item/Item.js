@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Card } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import ItemCategories from '../Common/ItemCategories';
@@ -11,6 +11,11 @@ const Item = ({ item }) => {
     const { id, poster_path, stock, title, vote_average, price_ticket, genre_txt } = item;
     const handleDetails = () => {
     }
+
+    useEffect(() => {
+        console.log('Render item'); //TODO: Remove
+    })
+
 
     return (
         <Card className="card-item col-12 col-md-4 mb-3 mt-3 mr-3 ml-3 text-center">

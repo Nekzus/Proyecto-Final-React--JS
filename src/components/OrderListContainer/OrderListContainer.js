@@ -4,21 +4,42 @@ import { Card, Image } from 'react-bootstrap';
 import { readOrdersDB } from '../../Firebase/functions';
 import { convertDateString, formatCurrency } from '../../helpers/helpers';
 import Loading from '../Common/Loading';
+import MessageEmptyOrder from '../Common/MessageEmptyOrder';
 
 const OrderListContainer = () => {
-    const [message, setMessage] = useState([]);
+    const [message, setMessage] = useState(<Loading />);
     const [orders, setOrders] = useState([]);
     const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
+        console.log('Render orderlistcontainer'); //TODO: remove
+    })
+    
+
+
+    
+    useEffect(() => {
         setIsMounted(true);
         isMounted && readOrdersDB('orders', setOrders);
-        (orders.length !== 0) ? setMessage() : setMessage(<Loading />);
         return () => {
             setIsMounted(false);
-            console.log('cleanup orderlistcontainer');
+            console.log('cleanup orderlistcontainer'); //TODO: remove
         }
     }, [setOrders, isMounted]);
+    
+    useEffect(() => {
+        (orders.length !== 0) ? setMessage('')
+            : setTimeout(() => {
+                if (orders.length !== 0) {
+                    return setMessage('');
+                } else {
+                    return setMessage(<MessageEmptyOrder />);
+                }
+            }, 2000);
+        return () => {
+            console.log('cleanup orderlistcontainer msg'); //TODO: remove
+        }
+    }, [orders]);
 
     if (orders.length !== 0) {
         return (
@@ -51,7 +72,7 @@ const OrderListContainer = () => {
                             <hr />
                             <div className='footer-order'>
                                 <span className='total-order col-auto'>Valor orden: <span className='total-amount-order'>{order.total}</span></span>
-                                {order.status === 'Pendiente' ? <span className='status-order col-auto'>Estado: <span className='status-buy-pending'>{order.status}</span></span> : <span className='status-order col-auto'>Estado: <span className='status-buy-ok'>{order.status}</span></span>}
+                                {order.status === 'Generada' ? <span className='status-order col-auto'>Estado: <span className='status-buy-pending'>{order.status}</span></span> : <span className='status-order col-auto'>Estado: <span className='status-buy-ok'>{order.status}</span></span>}
                             </div>
                         </Card>
                     </div>

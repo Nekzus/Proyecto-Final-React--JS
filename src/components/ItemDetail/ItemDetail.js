@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { context } from '../../Context/CartContext';
@@ -15,6 +15,11 @@ const ItemDetail = ({ item }) => {
     const [{ overview, id, backdrop_path, vote_average, release_date, stock, title, price_ticket, genre_txt, poster_path }] = item;
     const [quantity, setQuantity] = useState(1);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        console.log('Render itemdetail'); //TODO: Remove
+    })
+    
 
     const handleAdd = () => setQuantity(quantity + 1);
     const handleSubtract = () => setQuantity(quantity - 1);
@@ -34,7 +39,7 @@ const ItemDetail = ({ item }) => {
 
         addItem(item);
         setQuantity(0);
-        console.log(`Agregaste el producto ${title} al carrito cantidad ${quantity} un.`);
+        console.log(`Agregaste el producto ${title} al carrito cantidad ${quantity} un.`); //TODO: Remove
     };
 
     const handleCart = () => {

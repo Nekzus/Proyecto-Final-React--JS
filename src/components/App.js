@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import CartContext  from '../Context/CartContext';
 
 const App = () => {
-
+console.log('Render App');
     return (
         <BrowserRouter>
             <CartContext>

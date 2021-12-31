@@ -1,5 +1,5 @@
 import { serverTimestamp } from 'firebase/firestore';
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { createDataDB, updateDataDB } from '../Firebase/functions';
 import { formatCurrency } from '../helpers/helpers';
 
@@ -9,8 +9,8 @@ const { Provider } = context;
 
 const CartContext = ({ children }) => {
 
-    const [cart, setCart] = useState([]);
-    const [quantity, setQuantity] = useState(0);
+    const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
+    const [quantity, setQuantity] = useState(JSON.parse(localStorage.getItem('quantity')) || 0);
 
     console.log('Carrito:', cart, 'Cantidad:', quantity);
 
@@ -50,6 +50,7 @@ const CartContext = ({ children }) => {
         return cart.some(item => item.id === id);
     };
 
+    //**CALCULAR VALOR TOTAL ORDEN */
     const total = () => {
         let total = 0;
         if (cart.length !== 0) {
@@ -61,12 +62,13 @@ const CartContext = ({ children }) => {
         };
     };
 
+    //**CREAR Y GUARDAR EN FIRESTORE NUEVA ORDEN */
     const handleCheckout = () => {
         const newOrder = {
             buyer: { name: 'Mauricio', phone: '123456789', email: 'maseortega@gmail.com' },
             items: cart,
             date: serverTimestamp(),
-            status: 'Pendiente',
+            status: 'Generada',
             total: total()
         }
         createDataDB('orders', newOrder);
@@ -78,6 +80,7 @@ const CartContext = ({ children }) => {
         clear();
     };
 
+    //**ENVIAR POR CONTEXTO FUNCIONES Y VARIABLES */
     const valueContext = {
         cart,
         quantity,
@@ -89,6 +92,12 @@ const CartContext = ({ children }) => {
         total,
         isInCart,
     };
+
+    //**GUARDAR CARRITO Y CANTIDAD EN LOCALSTORAGE */
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(cart));
+        localStorage.setItem('quantity', JSON.stringify(quantity));
+    }, [cart, quantity]);
 
     return (
         <div>

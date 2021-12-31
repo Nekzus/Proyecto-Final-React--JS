@@ -6,4 +6,4 @@ import './index.css';
 
 const divRoot = document.getElementById('root');
 
-ReactDOM.render(<App />, divRoot );
+ReactDOM.render(<React.StrictMode><App /></React.StrictMode>, divRoot );

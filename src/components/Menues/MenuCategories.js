@@ -7,6 +7,10 @@ const MenuCategories = () => {
     const [isMounted, setIsMounted] = useState(false);
     const navigate = useNavigate();
 
+    useEffect(() => {
+        console.log('Render menucategories'); //TODO: remove
+    })
+
     const handleSelect = (e) => {
         navigate(`/categoria/${e.currentTarget.value}`)
     }
@@ -15,7 +19,7 @@ const MenuCategories = () => {
         isMounted && readDataDB('categories', setCategories, 'name', 'asc');
         return () => {
             setIsMounted(false);
-            console.log('cleanup menucategories');
+            console.log('cleanup menucategories'); //TODO: remove
         }
     }, [setCategories, isMounted]);
 

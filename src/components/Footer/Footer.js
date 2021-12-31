@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Footer = () => {
+    console.log('Render footer');
     return (
         <footer>
     <div className="container p-4 pb-0">

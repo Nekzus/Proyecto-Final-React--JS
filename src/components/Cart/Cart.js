@@ -1,12 +1,13 @@
-import React, { useContext } from 'react'
-import { Alert, Image, Table } from 'react-bootstrap';
+import React, { useContext, useEffect } from 'react'
+import { Image, Table } from 'react-bootstrap';
 import { context } from '../../Context/CartContext';
 import { IoTrashOutline } from 'react-icons/io5';
 import { FaTrashAlt } from 'react-icons/fa';
 import { BsCartCheckFill } from 'react-icons/bs';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { HiArrowLeft } from 'react-icons/hi';
 import { formatCurrency } from '../../helpers/helpers';
+import MessageEmptyCart from '../Common/MessageEmptyCart';
 
 const Cart = () => {
     const result = useContext(context);
@@ -14,6 +15,11 @@ const Cart = () => {
     const navigate = useNavigate();
     const handleCatalog = () => {
     }
+
+    useEffect(() => {
+        console.log('Render cart'); //TODO: remove
+    });
+    
 
     return (
         <>
@@ -65,19 +71,7 @@ const Cart = () => {
                         </div>
                     </div>
                 </div>}
-            {cart.length === 0 &&
-                <div className="container-flex cart-container">
-                    <Alert variant='dark' className='text-center'>
-                        <Alert.Heading >Tu carrito esta vacío</Alert.Heading>
-                        <p>
-                            Comienza agregando productos.
-                        </p>
-                        <hr />
-                        <p className="mb-0">
-                            <NavLink to={`/`}><button className="btn btn-dark" onClick={handleCatalog}>Volver al catalogo</button></NavLink>
-                        </p>
-                    </Alert>
-                </div>}
+            {cart.length === 0 && <MessageEmptyCart handleCatalog={handleCatalog} />}
         </>
 
     )
