@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { CardGroup } from 'react-bootstrap';
 import Item from '../Item/Item';
 
@@ -13,4 +13,4 @@ const ItemList = ({ items }) => {
     )
 }
 
-export default ItemList;
+export default memo(ItemList);

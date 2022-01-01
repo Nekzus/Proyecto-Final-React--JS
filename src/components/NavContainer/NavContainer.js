@@ -1,4 +1,5 @@
 import React from 'react'
+import { memo } from 'react';
 import { Button, Form, FormControl, Nav } from 'react-bootstrap';
 import MenuCategories from '../Menues/MenuCategories';
 
@@ -28,4 +29,4 @@ const NavContainer = () => {
     )
 };
 
-export default NavContainer;
+export default memo(NavContainer);

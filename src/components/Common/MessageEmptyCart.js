@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Alert } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
@@ -19,4 +19,4 @@ const MessageEmptyCart = ({ handleCatalog }) => {
     )
 };
 
-export default MessageEmptyCart;
+export default memo(MessageEmptyCart);

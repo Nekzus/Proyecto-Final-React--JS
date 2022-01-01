@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Spinner } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -12,4 +12,4 @@ const Loading = () => {
     )
 };
 
-export default Loading;
+export default memo(Loading);

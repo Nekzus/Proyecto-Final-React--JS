@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import Image from "react-bootstrap/Image";
 
 const LogoPage = () => {
@@ -8,4 +8,4 @@ const LogoPage = () => {
     )
 }
 
-export default LogoPage;
+export default memo(LogoPage);
