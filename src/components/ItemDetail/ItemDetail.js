@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useCallback, memo } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { context } from '../../Context/CartContext';
@@ -13,19 +13,23 @@ const ItemDetail = ({ item }) => {
     const result = useContext(context);
     const { addItem, isInCart } = result;
     const [{ overview, id, backdrop_path, vote_average, release_date, stock, title, price_ticket, genre_txt, poster_path }] = item;
-    const [quantity, setQuantity] = useState(1);
+    // const [quantity, setQuantity] = useState(1);
     const navigate = useNavigate();
+    let quantity = 1;
 
     useEffect(() => {
         console.log('Render itemdetail'); //TODO: Remove
+
     })
-    
 
-    const handleAdd = useCallback(() => setQuantity(quantity + 1), [quantity]);
-    const handleSubtract = useCallback(() => setQuantity(quantity - 1), [quantity]);
+    const onSubmit = (quantityChild) => {  //TODO: Implementar variable quantity
+        quantity = quantityChild;
+    }
+    // const handleAdd = (quantity) => setQuantity(quantity + 1);
+    // const handleSubtract = (quantity) => setQuantity(quantity - 1);
 
-    const handleOnAdd = useCallback(() => {
-        console.log(quantity);
+    const handleOnAdd = () => {
+
 
 
         const item = {
@@ -38,9 +42,9 @@ const ItemDetail = ({ item }) => {
         }
 
         addItem(item);
-        setQuantity(0);
         console.log(`Agregaste el producto ${title} al carrito cantidad ${quantity} un.`); //TODO: Remove
-    }, [addItem, quantity, title, id, poster_path, price_ticket, stock]);
+
+    };
 
     const handleCart = () => {
         navigate(`/cart`);
@@ -78,7 +82,7 @@ const ItemDetail = ({ item }) => {
                                         <button className="btn btn-cart btn-secondary" onClick={handleCart}>Terminar compra</button>
                                     </div>)
                                     : (<div className='selector-cantidad d-flex col-auto'>
-                                        <ItemCount className='item-count' stock={stock} count={quantity} handleAdd={handleAdd} handleSubtract={handleSubtract} />
+                                        <ItemCount className='item-count' stock={stock} onSubmit={onSubmit} />
                                         <button className="btn btn-add btn-secondary" onClick={handleOnAdd}>Agregar al carrito</button>
                                     </div>))
                                 : (<div className='selector-cantidad d-flex col-auto'>
@@ -93,4 +97,4 @@ const ItemDetail = ({ item }) => {
     )
 }
 
-export default memo(ItemDetail);
+export default ItemDetail;

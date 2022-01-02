@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const ItemCount = ({ stock, count, handleAdd, handleSubtract }) => {
+const ItemCount = ({ stock, onSubmit }) => {
+
+    const [quantity, setQuantity] = useState(1);
+
+    onSubmit(quantity);
+
+    const handleAdd = () => setQuantity(quantity + 1);
+    const handleSubtract = () => setQuantity(quantity - 1);
 
     return (
         <>
-            {(count === 1)
+            {(quantity === 1)
                 ? <button className="btn btn-count btn-secondary" disabled onClick={handleSubtract}>-</button>
                 : <button className="btn btn-count btn-secondary" onClick={handleSubtract}>-</button>}
-            <input type="text" className="form-control form-count p-1" placeholder={count} readOnly />
-            {(count === stock)
+            <input type="text" className="form-control form-count p-1" placeholder={quantity} readOnly />
+            {(quantity === stock)
                 ? <button className="btn btn-count btn-secondary" disabled onClick={handleAdd}>+</button>
                 : <button className="btn btn-count btn-secondary" onClick={handleAdd}>+</button>}
         </>
