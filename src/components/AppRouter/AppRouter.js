@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { memo } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Cart from '../Cart/Cart';
 import ItemDetailContainer from '../ItemDetailContainer/ItemDetailContainer';
@@ -12,9 +11,6 @@ export const AppRouter = () => {
 useEffect(() => {
     console.log('Render approuter'); //TODO: remove
 })
-    
-
-
     return (
         <div>
             <Routes>
@@ -29,4 +25,4 @@ useEffect(() => {
     )
 };
 
-export default memo(AppRouter);
+export default AppRouter;

@@ -13,5 +13,4 @@ const MessageEmptyOrder = () => {
         </div>
     )
 };
-
 export default MessageEmptyOrder;

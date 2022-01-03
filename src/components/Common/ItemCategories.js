@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React from 'react'
 
 
 const ItemCategories = ({ genre_txt }) => {
@@ -15,4 +15,4 @@ const ItemCategories = ({ genre_txt }) => {
 
 }
 
-export default memo(ItemCategories);
+export default ItemCategories;

@@ -19,13 +19,11 @@ const Cart = () => {
     useEffect(() => {
         console.log('Render cart'); //TODO: remove
     });
-    
-
     return (
         <>
             {cart.length !== 0 &&
                 <div className="container-flex cart-container">
-                    <Table responsive="auto" striped bordered hover variant="dark" className='table-cart'>
+                    <Table responsive="sm" striped bordered hover variant="dark" className='table-cart'>
                         <thead>
                             <tr>
                                 <th scope="col">Portada</th>
