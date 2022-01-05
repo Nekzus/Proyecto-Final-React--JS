@@ -72,7 +72,7 @@ const ItemDetail = ({ item }) => {
                                         <button className="btn btn-cart btn-secondary" onClick={handleCart}>Terminar compra</button>
                                     </div>)
                                     : (<div className='selector-cantidad d-flex col-auto'>
-                                        <ItemCount className='item-count' stock={stock} onSubmit={handleOnAdd} />
+                                        <ItemCount className='item-count' stock={stock} addCount={handleOnAdd} />
                                     </div>))
                             }
                         </Card.Footer>

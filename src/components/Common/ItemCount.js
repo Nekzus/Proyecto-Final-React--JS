@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-const ItemCount = ({ stock, onSubmit }) => {
+const ItemCount = ({ stock, addCount}) => {
 
     const [count, setCount] = useState(1);
 
     const handleOnAdd = () => {
-        onSubmit(count);
+        addCount(count);
     };
 
     const handleAdd = () => setCount(count + 1);

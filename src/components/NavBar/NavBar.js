@@ -6,6 +6,8 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import { context } from '../../Context/CartContext';
 import { Button } from 'react-bootstrap';
+import MenuCategories from '../Menues/MenuCategories';
+import SearchItems from '../Common/SearchItems';
 
 
 const NavBar = () => {
@@ -20,9 +22,14 @@ const NavBar = () => {
                     <NavLink className='navbar-brand' to="/cart"><CartWidget /></NavLink>}
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav className="me-auto p-3">
+                        <SearchItems />
+                    </Nav>
+                    <Nav className="me-auto p-3">
+                    <MenuCategories />
+                    </Nav>
                     <Nav className="me-auto">
-                <NavLink to='/orders'><Button className='btn btn-history btn-dark' >Historial ordenes</Button></NavLink>
-
+                        <NavLink to='/orders'><Button className='btn btn-history btn-dark' >Historial ordenes</Button></NavLink>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
