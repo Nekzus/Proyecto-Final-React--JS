@@ -1,4 +1,4 @@
-import React, { useContext, memo } from 'react';
+import React, { useContext } from 'react';
 import CartWidget from '../Cart/CartWidget';
 import Navbar from 'react-bootstrap/Navbar';
 import { NavLink } from 'react-router-dom';
@@ -26,7 +26,7 @@ const NavBar = () => {
                         <SearchItems />
                     </Nav>
                     <Nav className="me-auto p-3">
-                    <MenuCategories />
+                        <MenuCategories />
                     </Nav>
                     <Nav className="me-auto">
                         <NavLink to='/orders'><Button className='btn btn-history btn-dark' >Historial ordenes</Button></NavLink>
@@ -36,5 +36,4 @@ const NavBar = () => {
         </Navbar>
     )
 };
-
-export default memo(NavBar);
+export default NavBar;

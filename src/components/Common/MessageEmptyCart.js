@@ -2,7 +2,7 @@ import React from 'react'
 import { Alert } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
-const MessageEmptyCart = ({ handleCatalog }) => {
+const MessageEmptyCart = () => {
     return (
         <div className="container-flex cart-container">
             <Alert variant='dark' className='text-center'>
@@ -12,7 +12,7 @@ const MessageEmptyCart = ({ handleCatalog }) => {
                 </p>
                 <hr />
                 <p className="mb-0">
-                    <NavLink to={`/`}><button className="btn btn-dark" onClick={handleCatalog}>Volver al catalogo</button></NavLink>
+                    <NavLink to={`/`}><button className="btn btn-dark">Volver al catalogo</button></NavLink>
                 </p>
             </Alert>
         </div>

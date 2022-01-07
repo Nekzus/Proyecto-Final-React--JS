@@ -3,8 +3,7 @@ import React, { createContext, useEffect, useState } from 'react';
 import ModalCheckout from '../components/Modals/ModalCheckout';
 import { createDataDB, updateDataDB } from '../Firebase/functions';
 import { formatCurrency } from '../helpers/helpers';
-import useModal from '../hooks/useModal';
-
+import { useModal } from '../hooks/useModal';
 
 export const context = createContext();
 const { Provider } = context;
@@ -14,9 +13,6 @@ const CartContext = ({ children }) => {
     const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
     const [quantity, setQuantity] = useState(JSON.parse(localStorage.getItem('quantity')) || 0);
     const [isOpen, openModal, closeModal, data, setData] = useModal(false);
-    let idDoc;
-
-    console.log('Carrito:', cart, 'Cantidad:', quantity);
 
     //**AGREGAR ITEM AL CARRITO */
     const addItem = (item) => {
@@ -74,18 +70,18 @@ const CartContext = ({ children }) => {
             status: 'Generada',
             total: total()
         }
-
-        const promise = createDataDB('orders', newOrder);
-        promise.then(docRef => {
-            idDoc = docRef.id;
+        //**GUARDAR Y OBTENER ID DE ORDEN GENERADA */
+        const dataOrder = createDataDB('orders', newOrder);
+        dataOrder.then(docRef => {
+            const idDoc = docRef.id;
             setData(idDoc);
-            console.log('Documento creado con ID:', data);
             openModal();
         });
+        //**ACTUALIZAR STOCK EN DB */
         cart.forEach(item => {
             updateDataDB('movies', item.id, { stock: item.stock - item.quantity });
         });
-        console.log('actualizacion base de datos exitosa');
+        //**VACIAR CARRITO */
         clear();
     };
 

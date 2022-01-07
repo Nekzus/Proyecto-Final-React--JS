@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Card, Image } from 'react-bootstrap';
 import { convertDateString, formatCurrency } from '../../helpers/helpers';
 import { useFetchOrderListContainer } from '../../hooks/useFetchOrderListContainer';
@@ -9,9 +9,6 @@ import MessageEmptyOrder from '../Common/MessageEmptyOrder';
 const OrderListContainer = () => {
     const [orders, loading] = useFetchOrderListContainer();
 
-    useEffect(() => {
-        console.log('Render orderlistcontainer'); //TODO: remove
-    });
     return (
         <>
             {loading

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import ItemDetail from '../ItemDetail/ItemDetail';
 import { useParams } from 'react-router-dom';
 import { CardGroup } from 'react-bootstrap';
@@ -8,10 +8,6 @@ import { useFetchItemDetailContainer } from '../../hooks/useFetchItemDetailConta
 const ItemDetailContainer = () => {
     const { id } = useParams();
     const [item, loading] = useFetchItemDetailContainer(id);
-
-    useEffect(() => {
-    console.log('Render itemdetailcontainer'); //TODO: remove
-    });
 
     return (
         <CardGroup className='card-group'>

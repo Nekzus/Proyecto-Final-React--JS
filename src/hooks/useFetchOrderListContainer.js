@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+//**HOOK PARA LOGICA CONSULTA FETCH ORDENES  */
 import { useEffect, useState } from "react";
 import db from '../Firebase/config_firebase';
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
@@ -27,7 +28,6 @@ export const useFetchOrderListContainer = () => {
         isMounted && fetchReadAllOrders();
         return () => {
             setIsMounted(false);
-            console.log('cleanup useFetchOrderListContainer'); // TODO: remove
         }
     }, [isMounted]);
 

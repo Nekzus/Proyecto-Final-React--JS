@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { Image, Table } from 'react-bootstrap';
 import { context } from '../../Context/CartContext';
 import { IoTrashOutline } from 'react-icons/io5';
@@ -13,12 +13,7 @@ const Cart = () => {
     const result = useContext(context);
     const { cart, clear, removeItem, total, handleCheckout } = result;
     const navigate = useNavigate();
-    const handleCatalog = () => {
-    }
 
-    useEffect(() => {
-        console.log('Render cart'); //TODO: remove
-    });
     return (
         <>
             {cart.length !== 0 &&
@@ -69,7 +64,7 @@ const Cart = () => {
                         </div>
                     </div>
                 </div>}
-            {cart.length === 0 && <MessageEmptyCart handleCatalog={handleCatalog} />}
+            {cart.length === 0 && <MessageEmptyCart />}
         </>
 
     )

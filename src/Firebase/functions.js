@@ -2,7 +2,6 @@
 import db from './config_firebase';
 import { collection, getDocs, query, where, addDoc, doc, updateDoc } from 'firebase/firestore';
 
-
 //**WRITE DB **/
 //**CREAR DATO EN DB */
 export const createDataDB = async (setCollection, data) => {

@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+//**HOOK PARA LOGICA CONSULTA FETCH DETALLE POR PELICULA  */
 import { useEffect, useState } from "react";
 import db from '../Firebase/config_firebase';
 import { collection, onSnapshot, query, where } from 'firebase/firestore';
@@ -26,8 +27,8 @@ export const useFetchItemDetailContainer = (params) => {
         isMounted && fetchReadItem();
         return () => {
             setIsMounted(false);
-            console.log('cleanup useFetchItemDetailContainer'); // TODO: remove
         }
     }, [isMounted]);
+    
     return [item, loading];
 };

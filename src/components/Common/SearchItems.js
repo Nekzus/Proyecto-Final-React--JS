@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Form, FormControl } from 'react-bootstrap';
 
 const SearchItems = () => {
-    
+
     return (
         <Form className="d-flex">
             <FormControl

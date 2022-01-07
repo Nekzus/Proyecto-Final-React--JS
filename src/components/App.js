@@ -3,10 +3,10 @@ import Header from './Header/Header'
 import Main from './Main/Main';
 import Footer from './Footer/Footer';
 import { BrowserRouter } from 'react-router-dom';
-import CartContext  from '../Context/CartContext';
+import CartContext from '../Context/CartContext';
 
 const App = () => {
-console.log('Render App');
+
     return (
         <BrowserRouter>
             <CartContext>
@@ -17,5 +17,4 @@ console.log('Render App');
         </BrowserRouter>
     )
 };
-
 export default App;

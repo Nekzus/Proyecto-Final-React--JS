@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Card } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import ItemCategories from '../Common/ItemCategories';
@@ -9,13 +9,6 @@ import RatingStars from '../Common/RatingStars';
 const Item = ({ item }) => {
 
     const { id, poster_path, stock, title, vote_average, price_ticket, genre_txt } = item;
-    const handleDetails = () => {
-    }
-
-    useEffect(() => {
-        console.log('Render item'); //TODO: Remove
-    })
-
 
     return (
         <Card className="card-item col-12 col-md-4 mb-3 mt-3 mr-3 ml-3 text-center">
@@ -28,15 +21,16 @@ const Item = ({ item }) => {
                 <Card.Text>
                     <RatingStars rating={vote_average} />
                 </Card.Text>
-                <Card.Text className='price-card'>Precio: <PriceItems value={price_ticket} /></Card.Text>
+                {stock !== 0
+                    ? <Card.Text className='price-card'>Valor ticket: <PriceItems value={price_ticket} /></Card.Text>
+                    : <Card.Text className='price-card'>AGOTADO</Card.Text>}
                 <Card.Footer className="card-footer">
-                    <NavLink to={`/item/${id}`}><button className="btn btn-secondary" onClick={handleDetails}>Ver detalle</button></NavLink>
+                    <NavLink to={`/item/${id}`}><button className="btn btn-secondary">Ver detalle</button></NavLink>
                 </Card.Footer>
             </Card.Body>
         </Card>
     )
 };
-
 export default Item;
 
 

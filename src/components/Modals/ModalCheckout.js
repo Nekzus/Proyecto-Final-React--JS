@@ -1,8 +1,8 @@
 import { Button, Modal } from 'react-bootstrap';
 import { BsCheck2Circle } from "react-icons/bs";
 
-const ModalCheckout = ({docRef, show, close }) => {
-                console.log('docRef', docRef);
+const ModalCheckout = ({ docRef, show, close }) => {
+
     return (
         <>
             <Modal className='modal' show={show} onHide={close} centered={true}>
@@ -12,12 +12,12 @@ const ModalCheckout = ({docRef, show, close }) => {
                     </Modal.Header>
                     <Modal.Body className='modal__body'>
                         <span className='modal__icon'>
-                        <BsCheck2Circle/>
+                            <BsCheck2Circle />
                         </span>
                         <p className='modal__text'>Se genero la orden con ID# {docRef}</p>
                         <p className='modal__text'>En breve te contactaremos para confirmar tu compra</p>
                         <p className='modal__text'>Puedes consultar tu orden en el historial</p>
-                        </Modal.Body>
+                    </Modal.Body>
                     <Modal.Footer className='modal__footer'>
                         <Button className='modal__button' variant="dark" onClick={close}>
                             Cerrar

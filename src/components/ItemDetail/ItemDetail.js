@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { context } from '../../Context/CartContext';
@@ -13,12 +13,7 @@ const ItemDetail = ({ item }) => {
     const result = useContext(context);
     const { addItem, isInCart } = result;
     const [{ overview, id, backdrop_path, vote_average, release_date, stock, title, price_ticket, genre_txt, poster_path }] = item;
-    // const [quantity, setQuantity] = useState(1);
     const navigate = useNavigate();
-
-    useEffect(() => {
-        console.log('Render itemdetail'); //TODO: Remove
-    })
 
     const handleOnAdd = (quantity) => {
 
@@ -29,11 +24,8 @@ const ItemDetail = ({ item }) => {
             quantity,
             stock,
             title,
-        }
-
+        };
         addItem(item);
-        console.log(`Agregaste el producto ${title} al carrito cantidad ${quantity} un.`); //TODO: Remove
-
     };
 
     const handleCart = () => {
@@ -61,8 +53,8 @@ const ItemDetail = ({ item }) => {
                             <Card.Text className='description-card'>{overview}</Card.Text>
                             <Card.Text className='releasedate-card'>Fecha de lanzamiento: {release_date}</Card.Text>
                             <Card.Text className='rating-card'>Valoración: <RatingStars rating={vote_average} /></Card.Text>
-                            <Card.Text className='stock-card'>Tickets disponibles: {stock} un.</Card.Text>
-                            <Card.Text className='price-card'>Valor ticket: <PriceItems value={price_ticket} /></Card.Text>
+                            {stock !== 0 && <Card.Text className='stock-card'>Tickets disponibles: {stock} un.</Card.Text>}
+                            {stock !== 0 && <Card.Text className='price-card'>Valor ticket: <PriceItems value={price_ticket} /></Card.Text>}
                         </Card.Body>
                         <Card.Footer className='card-footer'>
                             {
@@ -81,6 +73,5 @@ const ItemDetail = ({ item }) => {
             </div>
         </Card>
     )
-}
-
+};
 export default ItemDetail;

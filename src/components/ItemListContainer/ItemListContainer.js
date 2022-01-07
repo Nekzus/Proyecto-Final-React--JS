@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import ItemList from '../ItemList/ItemList';
 import { useParams } from 'react-router-dom';
 import Loading from '../Common/Loading';
@@ -7,10 +7,6 @@ import { useFetchItemListContainer } from '../../hooks/useFetchItemListContainer
 const ItemListContainer = () => {
     const { id } = useParams();
     const [items, loading] = useFetchItemListContainer(id);
-
-    useEffect(() => {
-        console.log('Render itemlistcontainer'); //TODO: remove
-    });
 
     return (
         <main>

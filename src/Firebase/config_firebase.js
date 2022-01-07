@@ -1,3 +1,4 @@
+//**CONFIGURACION ACCESO API FIRESTORE CON APLICACION DE VARIABLES DE ENTORNO */
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 

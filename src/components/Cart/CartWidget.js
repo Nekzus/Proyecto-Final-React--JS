@@ -2,8 +2,6 @@ import React, { useContext } from 'react';
 import { context } from '../../Context/CartContext';
 import { BsCart4 } from 'react-icons/bs';
 import { Badge } from 'react-bootstrap';
-import { memo } from 'react';
-
 
 const CartWidget = () => {
 
@@ -18,5 +16,4 @@ const CartWidget = () => {
         </span>
     )
 };
-
-export default memo(CartWidget);
+export default CartWidget;
