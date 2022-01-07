@@ -1,4 +1,4 @@
-import React, { memo, useContext } from 'react'
+import React, { useContext } from 'react'
 import { Badge } from 'react-bootstrap';
 import { BsCartPlusFill } from 'react-icons/bs';
 import { context } from '../../Context/CartContext';
@@ -21,5 +21,4 @@ const ItemStatus = ({ itemId, stock }) => {
         return <></>
     }
 };
-
-export default memo(ItemStatus);
+export default ItemStatus;

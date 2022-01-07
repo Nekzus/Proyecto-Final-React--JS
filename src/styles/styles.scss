@@ -1,17 +1,9 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+@import './base/settings';
+@import './base/base';
+@import './components/auth';
+@import './components/modals';
 
-html,
-body,
-#root {
-  background-color: rgb(77, 75, 75);
-  color: white;
-  height: 100vh;
-  margin: 0rem;
-}
+
 #root {
   display: flex;
   flex-direction: column;
@@ -36,16 +28,7 @@ body,
   justify-content: space-between;
   padding: 0.5rem 1rem;
 }
-main {
-  flex-grow: 1;
-  padding: 1rem;
-}
 
-footer {
-  background-color: rgb(53, 51, 51);
-  padding: 0.5rem;
-  text-align: center;
-}
 .columna-header {
   align-items: center;
   display: flex;
@@ -56,11 +39,7 @@ footer {
   width: 25rem;
   margin: 1rem;
 }
-button {
-  color: white;
-  padding: 10px;
-  background-color: rgb(53, 51, 51);
-}
+
 .title-card {
   font-size: 2.2rem;
 }
@@ -268,8 +247,8 @@ button {
   padding: 0.5rem;
 }
 
-.image-detail{
-  position: relative; 
+.image-detail {
+  position: relative;
   width: 100%;
   height: 100%;
 }

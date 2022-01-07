@@ -1,16 +1,20 @@
 import { serverTimestamp } from 'firebase/firestore';
 import React, { createContext, useEffect, useState } from 'react';
+import ModalCheckout from '../components/Modals/ModalCheckout';
 import { createDataDB, updateDataDB } from '../Firebase/functions';
 import { formatCurrency } from '../helpers/helpers';
+import useModal from '../hooks/useModal';
+
 
 export const context = createContext();
 const { Provider } = context;
-
 
 const CartContext = ({ children }) => {
 
     const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
     const [quantity, setQuantity] = useState(JSON.parse(localStorage.getItem('quantity')) || 0);
+    const [isOpen, openModal, closeModal, data, setData] = useModal(false);
+    let idDoc;
 
     console.log('Carrito:', cart, 'Cantidad:', quantity);
 
@@ -36,7 +40,6 @@ const CartContext = ({ children }) => {
         const preCart = cart.filter(itemCart => itemCart.id !== item.id);
         setCart(preCart);
         setQuantity(quantity - item.quantity);
-        // saveData();
     };
 
     //**VACIAR CARRITO */
@@ -71,8 +74,14 @@ const CartContext = ({ children }) => {
             status: 'Generada',
             total: total()
         }
-        createDataDB('orders', newOrder);
-        console.log('carga base de datos exitosa');
+
+        const promise = createDataDB('orders', newOrder);
+        promise.then(docRef => {
+            idDoc = docRef.id;
+            setData(idDoc);
+            console.log('Documento creado con ID:', data);
+            openModal();
+        });
         cart.forEach(item => {
             updateDataDB('movies', item.id, { stock: item.stock - item.quantity });
         });
@@ -102,11 +111,10 @@ const CartContext = ({ children }) => {
     return (
         <div>
             <Provider value={valueContext}>
+                <ModalCheckout docRef={data} show={isOpen} close={closeModal} />
                 {children}
             </Provider>
-
         </div>
     )
 };
-
 export default CartContext;

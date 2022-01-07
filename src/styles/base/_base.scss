@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background-color: rgb(77, 75, 75);
+  color: white;
+  height: 100vh;
+  width: 100vw;
+  margin: 0rem;
+}
+
+main {
+  width: 100%;
+  padding: 1rem;
+}
+
+footer {
+  background-color: rgb(53, 51, 51);
+  padding: 0.5rem;
+  text-align: center;
+}
+
+button {
+  color: white;
+  padding: 10px;
+  background-color: rgb(53, 51, 51);
+}
