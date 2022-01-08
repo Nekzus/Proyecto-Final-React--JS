@@ -46,5 +46,9 @@ export const useFetchItemListContainer = (params) => {
         }
     }, [params, isMounted]);
 
+    useEffect(() => {
+        localStorage.setItem('items', JSON.stringify(items));
+    }, [items]);
+
     return [items, loading];
 };
