@@ -62,7 +62,7 @@ const CartContext = ({ children }) => {
     };
 
     //**CREAR Y GUARDAR EN FIRESTORE NUEVA ORDEN */
-    const handleCheckout = () => {
+    const handleCheckout = async () => {
         const newOrder = {
             buyer: { name: 'Mauricio', phone: '123456789', email: 'maseortega@gmail.com' },
             items: cart,
@@ -71,12 +71,11 @@ const CartContext = ({ children }) => {
             total: total()
         }
         //**GUARDAR Y OBTENER ID DE ORDEN GENERADA */
-        const dataOrder = createDataDB('orders', newOrder);
-        dataOrder.then(docRef => {
-            const idDoc = docRef.id;
-            setData(idDoc);
-            openModal();
-        });
+        const dataOrder = await createDataDB('orders', newOrder);
+        const idOrder = dataOrder.id;
+        setData(idOrder);
+        openModal();
+        
         //**ACTUALIZAR STOCK EN DB */
         cart.forEach(item => {
             updateDataDB('movies', item.id, { stock: item.stock - item.quantity });
