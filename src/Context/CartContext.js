@@ -3,6 +3,7 @@ import React, { createContext, useEffect, useState } from 'react';
 import ModalCheckout from '../components/Modals/ModalCheckout';
 import { createDataDB, updateDataDB } from '../Firebase/functions';
 import { formatCurrency } from '../helpers/helpers';
+import { useFetchItems } from '../hooks/useFetchItems';
 import { useModal } from '../hooks/useModal';
 
 export const context = createContext();
@@ -13,6 +14,8 @@ const CartContext = ({ children }) => {
     const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
     const [quantity, setQuantity] = useState(JSON.parse(localStorage.getItem('quantity')) || 0);
     const [isOpen, openModal, closeModal, data, setData] = useModal(false);
+    const [items] = useFetchItems();
+    console.log('items', items);
 
     //**AGREGAR ITEM AL CARRITO */
     const addItem = (item) => {
@@ -62,7 +65,7 @@ const CartContext = ({ children }) => {
     };
 
     //**CREAR Y GUARDAR EN FIRESTORE NUEVA ORDEN */
-    const handleCheckout = async () => {
+    const handleCheckout = () => {
         const newOrder = {
             buyer: { name: 'Mauricio', phone: '123456789', email: 'maseortega@gmail.com' },
             items: cart,
@@ -70,18 +73,25 @@ const CartContext = ({ children }) => {
             status: 'Generada',
             total: total()
         }
-        //**GUARDAR Y OBTENER ID DE ORDEN GENERADA */
-        const dataOrder = await createDataDB('orders', newOrder);
-        const idOrder = dataOrder.id;
-        setData(idOrder);
-        openModal();
-        
-        //**ACTUALIZAR STOCK EN DB */
-        cart.forEach(item => {
-            updateDataDB('movies', item.id, { stock: item.stock - item.quantity });
+
+        cart.forEach(product => {
+            items.forEach(async (item) => {
+                if (product.id === item.id) {
+                    if (item.stock >= product.quantity) {
+                        const newStock = item.stock - product.quantity;
+                        updateDataDB('movies', item.id, { stock: newStock });
+                        const dataOrder = await createDataDB('orders', newOrder);
+                        const idOrder = dataOrder.id;
+                        setData(idOrder);
+                        openModal();
+                        //**VACIAR CARRITO */
+                        clear();
+                    } else {
+                        alert(`No hay stock suficiente para ${item.title}, solo quedan ${item.stock} tickets disponibles`);
+                    }
+                }
+            });
         });
-        //**VACIAR CARRITO */
-        clear();
     };
 
     //**ENVIAR POR CONTEXTO FUNCIONES Y VARIABLES */

@@ -1,9 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useFetchMenuCategories } from '../../hooks/useFetchMenuCategories';
+import { useFetchCategories } from '../../hooks/useFetchCategories';
 
 const MenuCategories = () => {
-    const [categories] = useFetchMenuCategories();
+    const [categories] = useFetchCategories();
     const navigate = useNavigate();
     const handleSelect = (e) => {
         navigate(`/categoria/${e.currentTarget.value}`)

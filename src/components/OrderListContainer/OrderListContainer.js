@@ -2,12 +2,12 @@
 import React from 'react'
 import { Card, Image } from 'react-bootstrap';
 import { convertDateString, formatCurrency } from '../../helpers/helpers';
-import { useFetchOrderListContainer } from '../../hooks/useFetchOrderListContainer';
+import { useFetchOrders } from '../../hooks/useFetchOrders';
 import Loading from '../Common/Loading';
 import MessageEmptyOrder from '../Common/MessageEmptyOrder';
 
 const OrderListContainer = () => {
-    const [orders, loading] = useFetchOrderListContainer();
+    const [orders, loading] = useFetchOrders();
 
     return (
         <>

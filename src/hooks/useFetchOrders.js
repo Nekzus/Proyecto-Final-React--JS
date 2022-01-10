@@ -4,9 +4,10 @@ import { useEffect, useState } from "react";
 import db from '../Firebase/config_firebase';
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 
-export const useFetchOrderListContainer = () => {
+export const useFetchOrders = () => {
     const [orders, setOrders] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const [isMounted, setIsMounted] = useState(false);
 
     const fetchReadAllOrders = () => {
@@ -15,9 +16,17 @@ export const useFetchOrderListContainer = () => {
         const q = query(collectionRef, orderBy('date', 'desc'));
         const unsub = onSnapshot(q, (snapshot) => {
             setTimeout(() => {
-                const results = snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
-                setOrders(results);
-                setLoading(false);
+                try {
+                    if (isMounted) {
+                        const results = snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+                        setOrders(results);
+                        setLoading(false);
+                    }
+                } catch (error) {
+                    setError(error);
+                    setLoading(false);
+                    console.log('error consulta ordenes');
+                }
                 return unsub;
             }, 2000);
         })
@@ -25,11 +34,11 @@ export const useFetchOrderListContainer = () => {
 
     useEffect(() => {
         setIsMounted(true);
-        isMounted && fetchReadAllOrders();
+        fetchReadAllOrders();
         return () => {
             setIsMounted(false);
         }
     }, [isMounted]);
 
-    return [orders, loading];
+    return [orders, loading, error];
 };
