@@ -72,10 +72,10 @@ const CartContext = ({ children }) => {
             total: total()
         }
         if (withStock) {
-            const dataOrder = await createDataDB('orders', newOrder);
-            const idOrder = dataOrder.id;
-            setOrderRef(idOrder);
             if (stockOk.length > 0) {
+                const dataOrder = await createDataDB('orders', newOrder);
+                const idOrder = dataOrder.id;
+                setOrderRef(idOrder);
                 stockOk.forEach(item => {
                     const newStock = item.stock - item.quantity;
                     updateDataDB('movies', item.id, { stock: newStock });
