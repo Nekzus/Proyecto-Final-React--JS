@@ -33,11 +33,13 @@ export const useFetchItems = (category, id) => {
     };
     useEffect(() => {
         setIsMounted(true);
+        if(isMounted) {
         (!category)
             ? (!id)
                 ? fetchReadItemsQuery(orderBy('vote_average', 'desc'))
                 : fetchReadItemsQuery(where('id', '==', Number(id)))
             : fetchReadItemsQuery(where('genre_ids', 'array-contains', Number(category)));
+        }
         return () => {
             setIsMounted(false);
         }

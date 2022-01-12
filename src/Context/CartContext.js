@@ -1,8 +1,11 @@
-import { serverTimestamp } from 'firebase/firestore';
+/* eslint-disable react-hooks/exhaustive-deps */
+// import { serverTimestamp } from 'firebase/firestore';
 import React, { createContext, useEffect, useState } from 'react';
 import ModalCheckout from '../components/Modals/ModalCheckout';
-import { createDataDB, updateDataDB } from '../Firebase/functions';
+// import { createDataDB } from '../Firebase/functions';
+// import { createDataDB, updateDataDB } from '../Firebase/functions';
 import { formatCurrency } from '../helpers/helpers';
+import { useCheckStock } from '../hooks/useCheckStock';
 import { useFetchItems } from '../hooks/useFetchItems';
 import { useModal } from '../hooks/useModal';
 
@@ -12,10 +15,14 @@ const { Provider } = context;
 const CartContext = ({ children }) => {
 
     const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
+    // const [withStock, setWithStock] = useState(false)
     const [quantity, setQuantity] = useState(JSON.parse(localStorage.getItem('quantity')) || 0);
-    const [isOpen, openModal, closeModal, data, setData] = useModal(false);
+    const [handle, setHandle] = useState(true);
+    const [isOpen, openModal, closeModal, orderRef, setOrderRef] = useModal(false);
     const [items] = useFetchItems();
-    console.log('items', items);
+    const [withStock, stockLow, stockOk] = useCheckStock(cart, items, handle);
+
+
 
     //**AGREGAR ITEM AL CARRITO */
     const addItem = (item) => {
@@ -66,33 +73,73 @@ const CartContext = ({ children }) => {
 
     //**CREAR Y GUARDAR EN FIRESTORE NUEVA ORDEN */
     const handleCheckout = () => {
-        const newOrder = {
-            buyer: { name: 'Mauricio', phone: '123456789', email: 'maseortega@gmail.com' },
-            items: cart,
-            date: serverTimestamp(),
-            status: 'Generada',
-            total: total()
-        }
+        setHandle(true);
+        // const newOrder = {
+        //     buyer: { name: 'Mauricio', phone: '123456789', email: 'maseortega@gmail.com' },
+        //     items: cart,
+        //     date: serverTimestamp(),
+        //     status: 'Generada',
+        //     total: total()
+        // }
 
-        cart.forEach(product => {
-            items.forEach(async (item) => {
-                if (product.id === item.id) {
-                    if (item.stock >= product.quantity) {
-                        const newStock = item.stock - product.quantity;
-                        updateDataDB('movies', item.id, { stock: newStock });
-                        const dataOrder = await createDataDB('orders', newOrder);
-                        const idOrder = dataOrder.id;
-                        setData(idOrder);
-                        openModal();
-                        //**VACIAR CARRITO */
-                        clear();
-                    } else {
-                        alert(`No hay stock suficiente para ${item.title}, solo quedan ${item.stock} tickets disponibles`);
-                    }
-                }
-            });
-        });
+
+
+        // items.forEach(item => {
+        //     cart.forEach(product => {
+        //         if (item.id === product.id) {
+        //             console.log('withStock antes', withStock);
+        //             if (item.stock >= product.quantity) {
+        //                 setWithStock(true);
+        //                 console.log('Hay stock disponible');
+        //                 console.log('withStock disponible', withStock);
+        //                 // const newStock = item.stock - product.quantity;
+        //                 // updateDataDB('movies', product.id, { stock: newStock });
+        //             } else {
+        //                 setWithStock(false);
+        //                 console.log('No hay stock disponible');
+        //                 console.log('withStock disponible', withStock);
+        //                 alert(`No hay stock suficiente para ${product.title}, solo queda/n ${item.stock} ticket/s disponible/s`);
+        //             }
+        //         }
+        //     })
+        // });
+
+
+        if (withStock) {
+            console.log('ORDEN GENERADA');
+            console.log('withStock disponible OG', withStock);
+            // const dataOrder = createDataDB('orders', newOrder);
+            // const idOrder = dataOrder.id;
+            // setOrderRef(idOrder);
+            // console.log('productTitle', productTitle);
+
+            // const newStock = itemStock - productQuantity;
+            // console.log('newStock:', newStock);
+            // updateDataDB('movies', product.id, { stock: newStock });
+            // openModal();
+            // // //**VACIAR CARRITO */
+            // clear();
+            setHandle(false);
+        } else {
+            if (stockLow.length > 0) {
+                console.log('ORDEN NO GENERADA: No hay stock suficiente para comprar');
+                stockLow.forEach(item => {
+                    alert(`No hay stock suficiente para ${item.title}, solo queda/n ${item.stock} ticket/s disponible/s`);
+                })
+                console.log('withStock disponible ONG', withStock);
+            }
+        }
     };
+
+
+
+
+
+
+
+
+
+
 
     //**ENVIAR POR CONTEXTO FUNCIONES Y VARIABLES */
     const valueContext = {
@@ -116,7 +163,7 @@ const CartContext = ({ children }) => {
     return (
         <div>
             <Provider value={valueContext}>
-                <ModalCheckout docRef={data} show={isOpen} close={closeModal} />
+                <ModalCheckout docRef={orderRef} show={isOpen} close={closeModal} />
                 {children}
             </Provider>
         </div>

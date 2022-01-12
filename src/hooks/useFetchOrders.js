@@ -34,7 +34,7 @@ export const useFetchOrders = () => {
 
     useEffect(() => {
         setIsMounted(true);
-        fetchReadAllOrders();
+        isMounted && fetchReadAllOrders();
         return () => {
             setIsMounted(false);
         }

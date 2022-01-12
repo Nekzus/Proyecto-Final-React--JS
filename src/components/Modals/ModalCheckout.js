@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import { BsCheck2Circle } from "react-icons/bs";
 
@@ -28,4 +29,4 @@ const ModalCheckout = ({ docRef, show, close }) => {
         </>
     )
 };
-export default ModalCheckout;
+export default memo(ModalCheckout);
