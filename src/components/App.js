@@ -4,6 +4,8 @@ import Main from './Main/Main';
 import Footer from './Footer/Footer';
 import { BrowserRouter } from 'react-router-dom';
 import CartContext from '../Context/CartContext';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
 
@@ -13,6 +15,10 @@ const App = () => {
                 <Header />
                 <Main />
                 <Footer />
+                <ToastContainer 
+                autoClose={8000}
+                className="toast-container"
+                toastClassName="dark-toast"/>
             </CartContext>
         </BrowserRouter>
     )

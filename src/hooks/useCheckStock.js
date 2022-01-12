@@ -7,10 +7,6 @@ export const useCheckStock = (cart, items, handleCheckout) => {
     const [withStock, setWithStock] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
 
-    console.log('stockLow', stockLow);
-    console.log('stockOk', stockOk);
-    console.log('withStock', withStock);
-
     useEffect(() => {
         setIsMounted(true);
         if (handleCheckout && cart.length > 0 && items.length > 0 && isMounted) {

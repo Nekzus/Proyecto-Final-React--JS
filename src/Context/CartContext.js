@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { serverTimestamp } from 'firebase/firestore';
 import React, { createContext, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import ModalCheckout from '../components/Modals/ModalCheckout';
 import { createDataDB, updateDataDB } from '../Firebase/functions';
 import { formatCurrency } from '../helpers/helpers';
@@ -87,7 +88,8 @@ const CartContext = ({ children }) => {
         } else {
             if (stockLow.length > 0) {
                 stockLow.forEach(item => {
-                    alert(`No hay stock suficiente para "${item.title}", solo queda/n ${item.stock} ticket/s disponible/s`);
+                    const msg = (`Error: No hay stock suficiente para "${item.title}", solo queda/n ${item.stock} ticket/s disponible/s`);
+                    toast.error(msg, { theme: "dark" });
                 })
             }
         }
