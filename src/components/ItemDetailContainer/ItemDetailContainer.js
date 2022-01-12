@@ -7,9 +7,7 @@ import { useFetchItems } from '../../hooks/useFetchItems';
 
 const ItemDetailContainer = () => {
     const { id } = useParams();
-    const [item, loading, error] = useFetchItems(null, id);
-    console.log('ItemDetailContainer item', item);
-    console.log('ItemDetailContainer error', error);
+    const [item, loading] = useFetchItems(null, id);
 
     return (
         <CardGroup className='card-group'>

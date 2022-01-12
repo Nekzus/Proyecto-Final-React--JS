@@ -10,7 +10,6 @@ const SearchContainer = () => {
     const location = useLocation();
     const { q = '' } = queryString.parse(location.search);
     const searchItems = getItemsByTitle(items, q);
-    console.log('items filtrados', searchItems);
 
     return (
         <>

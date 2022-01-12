@@ -15,7 +15,6 @@ const SearchItems = () => {
 
     const handleSearch = (e) => {
         e.preventDefault();
-        console.log('click');
         navigate(`/search?q=${searchText}`);
     }
 

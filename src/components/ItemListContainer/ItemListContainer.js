@@ -6,9 +6,7 @@ import { useFetchItems } from '../../hooks/useFetchItems';
 
 const ItemListContainer = () => {
     const { id } = useParams();
-    const [items, loading, error] = useFetchItems(id);
-    console.log('ItemListContainer loading', loading);
-    console.log('ItemLIstContainer error', error);
+    const [items, loading] = useFetchItems(id);
 
     return (
         <main>

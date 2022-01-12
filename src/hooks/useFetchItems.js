@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-//**HOOK PARA LOGICA CONSULTA FETCH PELICULAS / X CATEGORIA  */
 import { useEffect, useState } from "react";
 import db from '../Firebase/config_firebase';
 import { collection, onSnapshot, orderBy, query, where } from 'firebase/firestore';
