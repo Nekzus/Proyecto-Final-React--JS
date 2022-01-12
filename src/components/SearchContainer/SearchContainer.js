@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import ItemList from '../ItemList/ItemList';
 import queryString from 'query-string';
 import { getItemsByTitle } from '../Selectors/getItemsByTitle';
+import MessageEmptySearch from '../Common/MessageEmptySearch';
 
 const SearchContainer = () => {
 
@@ -14,7 +15,9 @@ const SearchContainer = () => {
     return (
         <>
             <div className='container'>
-                <ItemList items={searchItems} />
+                {(q !== '') && (searchItems.length === 0)
+                    ? <MessageEmptySearch q={q} />
+                    : <ItemList items={searchItems} />}
             </div>
         </>
     )

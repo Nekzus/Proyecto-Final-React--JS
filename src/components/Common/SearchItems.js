@@ -23,7 +23,7 @@ const SearchItems = () => {
             <Form className="d-flex" onSubmit={handleSearch}>
                 <FormControl
                     type="text"
-                    placeholder="Buscar"
+                    placeholder="Buscar título"
                     className="form-control me-2"
                     aria-label="Search"
                     name="searchText"

@@ -32,12 +32,12 @@ export const useFetchItems = (category, id) => {
     };
     useEffect(() => {
         setIsMounted(true);
-        if(isMounted) {
-        (!category)
-            ? (!id)
-                ? fetchReadItemsQuery(orderBy('vote_average', 'desc'))
-                : fetchReadItemsQuery(where('id', '==', Number(id)))
-            : fetchReadItemsQuery(where('genre_ids', 'array-contains', Number(category)));
+        if (isMounted) {
+            (!category)
+                ? (!id)
+                    ? fetchReadItemsQuery(orderBy('vote_average', 'desc'))
+                    : fetchReadItemsQuery(where('id', '==', Number(id)))
+                : fetchReadItemsQuery(where('genre_ids', 'array-contains', Number(category)));
         }
         return () => {
             setIsMounted(false);
@@ -45,8 +45,14 @@ export const useFetchItems = (category, id) => {
     }, [category, isMounted]);
 
     useEffect(() => {
-        localStorage.setItem('items', JSON.stringify(items));
-    }, [items]);
+        setIsMounted(true);
+        if (isMounted && items.length > 35) {
+            localStorage.setItem('items', JSON.stringify(items));
+        }
+        return () => {
+            setIsMounted(false);
+        }
+    }, [items, isMounted]);
 
     return [items, loading, error];
 };
