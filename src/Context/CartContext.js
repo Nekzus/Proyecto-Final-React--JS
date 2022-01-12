@@ -87,7 +87,7 @@ const CartContext = ({ children }) => {
         } else {
             if (stockLow.length > 0) {
                 stockLow.forEach(item => {
-                    alert(`No hay stock suficiente para ${item.title}, solo queda/n ${item.stock} ticket/s disponible/s`);
+                    alert(`No hay stock suficiente para "${item.title}", solo queda/n ${item.stock} ticket/s disponible/s`);
                 })
             }
         }

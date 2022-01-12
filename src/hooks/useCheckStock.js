@@ -7,8 +7,13 @@ export const useCheckStock = (cart, items, handleCheckout) => {
     const [withStock, setWithStock] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
 
-    const checkStock = (handleCheckout) => {
-        if (handleCheckout && cart.length > 0 && items.length > 0) {
+    console.log('stockLow', stockLow);
+    console.log('stockOk', stockOk);
+    console.log('withStock', withStock);
+
+    useEffect(() => {
+        setIsMounted(true);
+        if (handleCheckout && cart.length > 0 && items.length > 0 && isMounted) {
             const preItemStock = cart.map(product => {
                 const item = items.find(item => item.id === product.id);
                 if (item.stock < product.quantity) {
@@ -26,11 +31,7 @@ export const useCheckStock = (cart, items, handleCheckout) => {
                 return item.stock >= product.quantity;
             });
             setWithStock(preWithStock);
-        }
-    };
-    useEffect(() => {
-        setIsMounted(true);
-        isMounted && checkStock(handleCheckout);
+        };
         return () => {
             setIsMounted(false);
         };
