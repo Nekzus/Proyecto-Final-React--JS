@@ -6,20 +6,23 @@ import { BrowserRouter } from 'react-router-dom';
 import CartContext from '../Context/CartContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import UserContext from '../Context/UserContext';
 
 const App = () => {
 
     return (
         <BrowserRouter>
-            <CartContext>
-                <Header />
-                <Main />
-                <Footer />
-                <ToastContainer 
-                autoClose={8000}
-                className="toast-container"
-                toastClassName="dark-toast"/>
-            </CartContext>
+            <UserContext>
+                <CartContext>
+                    <Header />
+                    <Main />
+                    <Footer />
+                    <ToastContainer
+                        autoClose={8000}
+                        className="toast-container"
+                        toastClassName="dark-toast" />
+                </CartContext>
+            </UserContext>
         </BrowserRouter>
     )
 };

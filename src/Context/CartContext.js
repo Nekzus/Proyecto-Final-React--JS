@@ -9,8 +9,8 @@ import { useCheckStock } from '../hooks/useCheckStock';
 import { useFetchItems } from '../hooks/useFetchItems';
 import { useModal } from '../hooks/useModal';
 
-export const context = createContext();
-const { Provider } = context;
+export const cartContext = createContext();
+const { Provider } = cartContext;
 
 const CartContext = ({ children }) => {
 

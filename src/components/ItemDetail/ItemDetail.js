@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { context } from '../../Context/CartContext';
+import { cartContext } from '../../Context/CartContext';
 import ItemCategories from '../Common/ItemCategories';
 import ItemCount from '../Common/ItemCount';
 import PriceItems from '../Common/PriceItems';
@@ -10,7 +10,7 @@ import { HiArrowLeft } from 'react-icons/hi';
 import ItemStatus from '../Common/ItemStatus';
 
 const ItemDetail = ({ item }) => {
-    const result = useContext(context);
+    const result = useContext(cartContext);
     const { addItem, isInCart } = result;
     const [{ overview, id, backdrop_path, vote_average, release_date, stock, title, price_ticket, genre_txt, poster_path }] = item;
     const navigate = useNavigate();

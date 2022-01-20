@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Image, Table } from 'react-bootstrap';
-import { context } from '../../Context/CartContext';
+import { cartContext } from '../../Context/CartContext';
 import { IoTrashOutline } from 'react-icons/io5';
 import { FaTrashAlt } from 'react-icons/fa';
 import { BsCartCheckFill } from 'react-icons/bs';
@@ -10,19 +10,18 @@ import { formatCurrency } from '../../helpers/helpers';
 import MessageEmptyCart from '../Common/MessageEmptyCart';
 
 const Cart = () => {
-    const result = useContext(context);
+    const result = useContext(cartContext);
     const { cart, clear, removeItem, total, handleCheckout } = result;
     const navigate = useNavigate();
 
     return (
         <>
             {cart.length !== 0 &&
-                <div className="container-flex cart-container">
+                <div className="container cart-container">
                     <Table responsive="sm" striped bordered hover variant="dark" className='table-cart'>
                         <thead>
                             <tr>
                                 <th scope="col">Portada</th>
-                                <th scope="col">Código</th>
                                 <th scope="col">Titulo</th>
                                 <th scope="col">Precio</th>
                                 <th scope="col">Tickets</th>
@@ -35,7 +34,6 @@ const Cart = () => {
                                 cart.map(item => (
                                     <tr key={item.id} className="td-table">
                                         <td><Image src={item.poster_path} width="80rem" rounded className='img-fluid' /></td>
-                                        <td>{item.id}</td>
                                         <td>{item.title}</td>
                                         <td>{formatCurrency(item.price_ticket)}</td>
                                         <td>{item.quantity}</td>

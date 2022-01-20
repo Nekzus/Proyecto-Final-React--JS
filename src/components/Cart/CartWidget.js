@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
-import { context } from '../../Context/CartContext';
+import { cartContext } from '../../Context/CartContext';
 import { BsCart4 } from 'react-icons/bs';
 import { Badge } from 'react-bootstrap';
 
 const CartWidget = () => {
 
-    const result = useContext(context);
+    const result = useContext(cartContext);
     const { quantity } = result;
 
     return (

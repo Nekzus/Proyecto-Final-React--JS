@@ -11,11 +11,11 @@ const Header = () => {
     return (
         <header id="contenido-header">
             <Container>
+                <NavBar />
                 <Row>
                     <Col md={2} className="columna-header"><NavLink to="/"><LogoPage /></NavLink></Col>
                     <Col md={10} className="columna-header" id="contenedor-titulo"><h1>CINES NKMAX</h1></Col>
                 </Row>
-                <NavBar />
             </Container>
         </header>
     );

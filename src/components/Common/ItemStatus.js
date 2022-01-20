@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
 import { Badge } from 'react-bootstrap';
 import { BsCartPlusFill } from 'react-icons/bs';
-import { context } from '../../Context/CartContext';
+import { cartContext } from '../../Context/CartContext';
 
 const ItemStatus = ({ itemId, stock }) => {
-    const result = useContext(context);
+    const result = useContext(cartContext);
     const { isInCart } = result;
 
     if (isInCart(itemId)) {
