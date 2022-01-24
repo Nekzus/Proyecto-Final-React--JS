@@ -20,9 +20,21 @@ const LoginUser = () => {
         try {
             await logIn(email, password);
             navigate("/");
-        } catch (err) {
-            setError(err.message);
+        } catch (error) {
+            console.log(error.code);
+            if (error.code === 'auth/wrong-password') {
+                setError('Error: La contraseña es incorrecta');
+            } else if (error.code === 'auth/user-not-found') {
+                setError('Error: El usuario no existe');
+            } else if (error.code === 'auth/invalid-email') {
+                setError('Error: El email no es valido');
+            } else if (error.code === 'auth/too-many-requests') {
+                setError('Error: Demasiadas solicitudes');
+            } else {
+                setError('Error desconocido');
+            }
         }
+
     };
 
     const handleGoogleSignIn = async (e) => {
@@ -44,7 +56,7 @@ const LoginUser = () => {
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Control
                             type="email"
-                            placeholder="e-mail"
+                            placeholder="E-mail"
                             onChange={(e) => setEmail(e.target.value)}
                         />
                     </Form.Group>
@@ -64,7 +76,7 @@ const LoginUser = () => {
                     </div>
                 </Form>
                 <hr />
-                <div>
+                <div className="box mt-3 text-center">
                     <GoogleButton
                         className="g-btn"
                         type="dark"
@@ -72,11 +84,10 @@ const LoginUser = () => {
                     />
                 </div>
             </div>
-            <div className="p-4 box mt-3 text-center">
-                ¿No tienes una cuenta? <Link to="/auth/register">Registrate</Link>
+            <div className="box mt-3 text-center">
+                ¿No tienes una cuenta? <Link to="/auth/register">Crear cuenta</Link>
             </div>
         </>
     );
 };
-
 export default LoginUser;

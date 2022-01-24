@@ -12,8 +12,6 @@ import { FiPower } from "react-icons/fi";
 import { userContext } from '../../Context/UserContext';
 import { useUser } from '../../hooks/useUser';
 
-
-
 const NavBar = () => {
     const cartResult = useContext(cartContext);
     const { cart } = cartResult;
@@ -28,23 +26,22 @@ const NavBar = () => {
             console.log(err.message);
         }
     };
-
-
+    
     return (
         <Navbar className='fixed-top-nav fixed-top' collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container>
                 <NavLink className='navbar-brand' to="/">CinesNKMAX</NavLink>
                 {cart.length !== 0 &&
                     <NavLink className='navbar-brand' to="/cart"><CartWidget /></NavLink>}
-                {isLogged
-                    ? <NavLink className='navbar-brand' to='#' onClick={handleLogOut}><FiPower /></NavLink>
-                    : <NavLink className='navbar-brand' to="/auth/login">Login</NavLink>}
-                {/* <NavLink className='navbar-brand' to="/auth/register">Registro</NavLink> */}
+                <Nav className="me-auto p-3">
+                    <SearchItems />
+                </Nav>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="me-auto p-3">
-                        <SearchItems />
-                    </Nav>
+                {!isLogged && <NavLink className='navbar-brand' to="/auth/register">Creá tu cuenta</NavLink>}
+                {isLogged
+                    ? <NavLink className='navbar-brand' to='#' onClick={handleLogOut}><FiPower /></NavLink>
+                    : <NavLink className='navbar-brand' to="/auth/login">Ingresá</NavLink>}
                     <Nav className="me-auto p-3">
                         <MenuCategories />
                     </Nav>
