@@ -35,7 +35,6 @@ const OrderListContainer = () => {
                                     <Card.Header>
                                         <span className='header-order'>
                                             <span>{convertDateString(order.date)}</span>
-                                            <span>{order.buyer.email}</span>
                                             <span># {order.id}</span>
                                         </span>
                                     </Card.Header>
