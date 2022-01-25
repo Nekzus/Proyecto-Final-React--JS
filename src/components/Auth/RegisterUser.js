@@ -7,7 +7,7 @@ import { userContext } from "../../Context/UserContext";
 
 const RegisterUser = () => {
     const userResult = useContext(userContext);
-    const { signUp } = userResult;
+    const { signUp, userRegisterData } = userResult;
     const [userName, setUserName] = useState("");
     const [email, setEmail] = useState("");
     const [error, setError] = useState("");
@@ -21,6 +21,7 @@ const RegisterUser = () => {
         setError("");
         try {
             await signUp(email, password);
+            await userRegisterData(userName, email);
             navigate("/");
         } catch (error) {
             if (error.code === 'auth/invalid-email') {

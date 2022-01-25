@@ -8,6 +8,7 @@ import {
     signInWithPopup,
 } from 'firebase/auth';
 import { auth } from '../Firebase/config_firebase';
+import { createDataDB } from '../Firebase/functions';
 
 
 export const userContext = createContext();
@@ -29,6 +30,13 @@ const UserContext = ({ children }) => {
         const googleAuthProvider = new GoogleAuthProvider();
         return signInWithPopup(auth, googleAuthProvider);
     };
+    const userRegisterData = (userName, email) => {
+        const buyer = {
+            name: userName,
+            email: email,
+        }
+        createDataDB('users', buyer);
+    };
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -45,6 +53,7 @@ const UserContext = ({ children }) => {
         logOut,
         googleSignIn,
         user,
+        userRegisterData,
     };
 
     return (

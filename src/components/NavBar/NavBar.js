@@ -17,7 +17,7 @@ const NavBar = () => {
     const { cart } = cartResult;
     const userResult = useContext(userContext);
     const { logOut } = userResult;
-    const { isLogged } = useUser("");
+    const { isLogged, users } = useUser("");
 
     const handleLogOut = async () => {
         try {
@@ -26,6 +26,8 @@ const NavBar = () => {
             console.log(err.message);
         }
     };
+
+    users && console.log('users navbar', users.name);
     
     return (
         <Navbar className='fixed-top-nav fixed-top' collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -39,6 +41,7 @@ const NavBar = () => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                 {!isLogged && <NavLink className='navbar-brand' to="/auth/register">Creá tu cuenta</NavLink>}
+                {isLogged && users && <Nav className="me-auto">{users.name}</Nav>}
                 {isLogged
                     ? <NavLink className='navbar-brand' to='#' onClick={handleLogOut}><FiPower /></NavLink>
                     : <NavLink className='navbar-brand' to="/auth/login">Ingresá</NavLink>}
@@ -46,7 +49,7 @@ const NavBar = () => {
                         <MenuCategories />
                     </Nav>
                     <Nav className="me-auto">
-                        <NavLink to='/orders'><Button className='btn btn-history btn-dark' >Historial ordenes</Button></NavLink>
+                        {isLogged && <NavLink to='/orders'><Button className='btn btn-history btn-dark' >Historial ordenes</Button></NavLink>}
                     </Nav>
                 </Navbar.Collapse>
             </Container>

@@ -8,6 +8,7 @@ import { formatCurrency } from '../helpers/helpers';
 import { useCheckStock } from '../hooks/useCheckStock';
 import { useFetchItems } from '../hooks/useFetchItems';
 import { useModal } from '../hooks/useModal';
+import { useUser } from '../hooks/useUser';
 
 export const cartContext = createContext();
 const { Provider } = cartContext;
@@ -20,6 +21,7 @@ const CartContext = ({ children }) => {
     const [isOpen, openModal, closeModal, orderRef, setOrderRef] = useModal(false);
     const [items] = useFetchItems();
     const [withStock, stockLow, stockOk] = useCheckStock(cart, items, handle);
+    const { users } = useUser("");
 
     const addItem = (item) => {
         if (isInCart(item.id)) {
@@ -66,7 +68,7 @@ const CartContext = ({ children }) => {
     const handleCheckout = async () => {
         setHandle(true);
         const newOrder = {
-            buyer: { name: 'Mauricio', phone: '123456789', email: 'maseortega@gmail.com' },
+            buyer: users,
             items: cart,
             date: serverTimestamp(),
             status: 'Generada',

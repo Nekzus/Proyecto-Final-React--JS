@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Image, Table } from 'react-bootstrap';
 import { cartContext } from '../../Context/CartContext';
 import { IoTrashOutline } from 'react-icons/io5';
@@ -8,12 +8,21 @@ import { useNavigate } from 'react-router-dom';
 import { HiArrowLeft } from 'react-icons/hi';
 import { formatCurrency } from '../../helpers/helpers';
 import MessageEmptyCart from '../Common/MessageEmptyCart';
+import { useUser } from '../../hooks/useUser';
 
 const Cart = () => {
     const result = useContext(cartContext);
     const { cart, clear, removeItem, total, handleCheckout } = result;
+    const { isLogged } = useUser("");
     const navigate = useNavigate();
 
+    useEffect(() => {
+        if (!isLogged) {
+            navigate('/auth/login');
+        }
+    }, [isLogged, navigate]);
+
+    if (isLogged) {
     return (
         <>
             {cart.length !== 0 &&
@@ -66,5 +75,11 @@ const Cart = () => {
         </>
 
     )
+    } else {
+        return (
+            <></>
+        );
+    }
+
 };
 export default Cart;
