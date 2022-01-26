@@ -27,8 +27,6 @@ const NavBar = () => {
         }
     };
 
-    users && console.log('users navbar', users.name);
-    
     return (
         <Navbar className='fixed-top-nav fixed-top' collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container>
@@ -40,11 +38,11 @@ const NavBar = () => {
                 </Nav>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
-                {!isLogged && <NavLink className='navbar-brand' to="/auth/register">Creá tu cuenta</NavLink>}
-                {isLogged && users && <Nav className="me-auto">{users.name}</Nav>}
-                {isLogged
-                    ? <NavLink className='navbar-brand' to='#' onClick={handleLogOut}><FiPower /></NavLink>
-                    : <NavLink className='navbar-brand' to="/auth/login">Ingresá</NavLink>}
+                    {!isLogged && <NavLink className='navbar-brand' to="/auth/register">Creá tu cuenta</NavLink>}
+                    {isLogged && users && <Nav className="me-auto">{users.name}</Nav>}
+                    {isLogged
+                        ? <NavLink className='navbar-brand' to='#' onClick={handleLogOut}><FiPower /></NavLink>
+                        : <NavLink className='navbar-brand' to="/auth/login">Ingresá</NavLink>}
                     <Nav className="me-auto p-3">
                         <MenuCategories />
                     </Nav>

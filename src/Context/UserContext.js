@@ -4,11 +4,11 @@ import {
     signInWithEmailAndPassword,
     signOut,
     onAuthStateChanged,
-    GoogleAuthProvider,
-    signInWithPopup,
 } from 'firebase/auth';
 import { auth } from '../Firebase/config_firebase';
 import { createDataDB } from '../Firebase/functions';
+import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
+import db from '../Firebase/config_firebase';
 
 
 export const userContext = createContext();
@@ -16,6 +16,9 @@ const { Provider } = userContext;
 
 const UserContext = ({ children }) => {
     const [user, setUser] = useState("");
+    const [users, setUsers] = useState([]);
+    const [error, setError] = useState(null);
+    const [isMounted, setIsMounted] = useState(false);
 
     const signUp = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password);
@@ -26,10 +29,7 @@ const UserContext = ({ children }) => {
     const logOut = () => {
         return signOut(auth);
     };
-    const googleSignIn = () => {
-        const googleAuthProvider = new GoogleAuthProvider();
-        return signInWithPopup(auth, googleAuthProvider);
-    };
+    
     const userRegisterData = (userName, email) => {
         const buyer = {
             name: userName,
@@ -37,6 +37,29 @@ const UserContext = ({ children }) => {
         }
         createDataDB('users', buyer);
     };
+
+    useEffect(() => {
+        setIsMounted(true);
+        const collectionRef = collection(db, 'users');
+        const q = query(collectionRef, orderBy('email', 'asc'));
+        const unsub = onSnapshot(q, (snapshot) => {
+            try {
+                    const results = snapshot.docs.map(doc => (doc.data()));
+                    const userDB = results.find(users => users.email === user.email);
+                    isMounted && setUsers(userDB);
+                
+            } catch (error) {
+                setError(error);
+                console.log('error consulta usuarios');
+            }
+            return unsub;
+        });
+    
+        return () => {
+            setIsMounted(false);
+            setUsers([]);
+        }
+    }, [user, isMounted]);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -51,9 +74,10 @@ const UserContext = ({ children }) => {
         signUp,
         logIn,
         logOut,
-        googleSignIn,
         user,
+        users,
         userRegisterData,
+        error,
     };
 
     return (

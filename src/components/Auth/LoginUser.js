@@ -2,24 +2,23 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Form, Alert } from "react-bootstrap";
 import { Button } from "react-bootstrap";
-import GoogleButton from "react-google-button";
 import { userContext } from "../../Context/UserContext";
-
 
 const LoginUser = () => {
     const userResult = useContext(userContext);
-    const { logIn, googleSignIn } = userResult;
+    const { logIn } = userResult;
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate();
+    const lastPath = localStorage.getItem('lastPath') || '/';
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError("");
         try {
             await logIn(email, password);
-            navigate("/");
+            navigate(lastPath);
         } catch (error) {
             console.log(error.code);
             if (error.code === 'auth/wrong-password') {
@@ -37,21 +36,10 @@ const LoginUser = () => {
 
     };
 
-    const handleGoogleSignIn = async (e) => {
-        e.preventDefault();
-        try {
-            await googleSignIn();
-            navigate("/");
-        } catch (error) {
-            console.log(error.message);
-        }
-    };
-
     return (
         <>
             <div className="p-4 box">
                 <h2 className="mb-3">Inicia sesión</h2>
-                {error && <Alert variant="danger">{error}</Alert>}
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Control
@@ -77,14 +65,10 @@ const LoginUser = () => {
                 </Form>
                 <hr />
                 <div className="box mt-3 text-center">
-                    <GoogleButton
-                        className="g-btn"
-                        type="dark"
-                        onClick={handleGoogleSignIn}
-                    />
+                    {error && <Alert variant="danger">{error}</Alert>}
                 </div>
             </div>
-            <div className="box mt-3 text-center">
+            <div className="box mt-2 text-center">
                 ¿No tienes una cuenta? <Link to="/auth/register">Crear cuenta</Link>
             </div>
         </>

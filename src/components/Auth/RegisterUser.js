@@ -13,6 +13,7 @@ const RegisterUser = () => {
     const [error, setError] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    const lastPath = localStorage.getItem('lastPath') || '/';
 
     console.log('Name: ', userName);
 
@@ -22,7 +23,7 @@ const RegisterUser = () => {
         try {
             await signUp(email, password);
             await userRegisterData(userName, email);
-            navigate("/");
+            navigate(lastPath);
         } catch (error) {
             if (error.code === 'auth/invalid-email') {
                 setError('Error: El formato del e-mail no es válido');
