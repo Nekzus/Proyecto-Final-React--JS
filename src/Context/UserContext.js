@@ -10,7 +10,6 @@ import { createDataDB } from '../Firebase/functions';
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import db from '../Firebase/config_firebase';
 
-
 export const userContext = createContext();
 const { Provider } = userContext;
 
@@ -50,7 +49,6 @@ const UserContext = ({ children }) => {
                 
             } catch (error) {
                 setError(error);
-                console.log('error consulta usuarios');
             }
             return unsub;
         });
