@@ -46,6 +46,7 @@ const LoginUser = () => {
                         <Form.Control
                             type="email"
                             name="email"
+                            value={email}
                             placeholder="E-mail"
                             onChange={handleInputChange}
                         />
@@ -55,6 +56,7 @@ const LoginUser = () => {
                         <Form.Control
                             type="password"
                             name="password"
+                            value={password}
                             placeholder="Contraseña"
                             onChange={handleInputChange}
                         />

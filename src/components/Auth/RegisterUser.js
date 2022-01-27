@@ -49,6 +49,7 @@ const RegisterUser = () => {
                         <Form.Control
                             type="name"
                             name="userName"
+                            value={userName}
                             placeholder="Nombre de usuario"
                             onChange={handleInputChange}
                             required
@@ -58,6 +59,7 @@ const RegisterUser = () => {
                         <Form.Control
                             type="email"
                             name="email"
+                            value={email}
                             placeholder="E-mail"
                             onChange={handleInputChange}
                             required
@@ -68,6 +70,7 @@ const RegisterUser = () => {
                         <Form.Control
                             type="password"
                             name="password"
+                            value={password}
                             placeholder="Contraseña"
                             onChange={handleInputChange}
                             required
