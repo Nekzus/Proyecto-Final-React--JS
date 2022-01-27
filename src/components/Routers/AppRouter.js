@@ -29,7 +29,7 @@ const AppRouter = () => {
                 <Route path="/categoria/:id" element={<ItemListContainer />} />;
                 <Route path="/item/:id" element={<ItemDetailContainer />} />;
                 <Route path="/search" element={<SearchContainer />} />; 
-                <Route path="categoria" element={<Navigate to="/" />} />
+                <Route path="/categoria" element={<Navigate to="/" />} />
             </Routes>
         </div>
     )
