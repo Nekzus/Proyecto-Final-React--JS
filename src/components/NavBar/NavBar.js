@@ -47,6 +47,9 @@ const NavBar = () => {
                         <MenuCategories />
                     </Nav>
                     <Nav className="me-auto">
+                        <NavLink to='/'><Button className='btn btn-history btn-dark' >Ir al catálogo</Button></NavLink>
+                    </Nav>
+                    <Nav className="me-auto">
                         <NavLink to='/orders'><Button className='btn btn-history btn-dark' >Mis compras</Button></NavLink>
                     </Nav>
                 </Navbar.Collapse>
