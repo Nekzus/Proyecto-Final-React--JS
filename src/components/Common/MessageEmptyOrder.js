@@ -3,9 +3,9 @@ import { Alert } from 'react-bootstrap';
 
 const MessageEmptyOrder = () => {
     return (
-        <div className="container-flex cart-container">
+        <div className="container cart-container">
             <Alert variant='dark' className='text-center'>
-                <Alert.Heading >No tienes ordenes generadas</Alert.Heading>
+                <Alert.Heading >No tienes compras realizadas</Alert.Heading>
                 <p>
                     Comienza a operar con tu carrito.
                 </p>

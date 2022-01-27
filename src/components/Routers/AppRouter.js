@@ -13,10 +13,6 @@ const AppRouter = () => {
     return (
         <div>
             <Routes>
-                <Route path="/" element={<ItemListContainer />} />;
-                <Route path="/categoria/:id" element={<ItemListContainer />} />;
-                <Route path="/item/:id" element={<ItemDetailContainer />} />;
-                <Route path="/search" element={<SearchContainer />} />; 
                 <Route path="/auth/*" element={
                     <PublicRoute>
                         <AuthRouter />
@@ -29,7 +25,11 @@ const AppRouter = () => {
                     </PrivateRoute>
                 }
                 />
-                <Route path="*" element={<Navigate to="/" />} />
+                <Route path="/" element={<ItemListContainer />} />;
+                <Route path="/categoria/:id" element={<ItemListContainer />} />;
+                <Route path="/item/:id" element={<ItemDetailContainer />} />;
+                <Route path="/search" element={<SearchContainer />} />; 
+                <Route path="categoria" element={<Navigate to="/" />} />
             </Routes>
         </div>
     )

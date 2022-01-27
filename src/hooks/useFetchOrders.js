@@ -2,12 +2,14 @@
 import { useEffect, useState } from "react";
 import db from '../Firebase/config_firebase';
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
+import { useUser } from "./useUser";
 
 export const useFetchOrders = () => {
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [isMounted, setIsMounted] = useState(false);
+    const { user } = useUser("")
 
     const fetchReadAllOrders = () => {
         setLoading(true);
@@ -18,7 +20,8 @@ export const useFetchOrders = () => {
                 try {
                     if (isMounted) {
                         const results = snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
-                        setOrders(results);
+                        const userDB = results.filter(order => order.buyer.email === user.email);
+                        setOrders(userDB);
                         setLoading(false);
                     }
                 } catch (error) {

@@ -4,11 +4,11 @@ import { NavLink } from 'react-router-dom';
 
 const MessageEmptyCart = () => {
     return (
-        <div className="container-flex cart-container">
+        <div className="container cart-container">
             <Alert variant='dark' className='text-center'>
                 <Alert.Heading >Tu carrito esta vacío</Alert.Heading>
                 <p>
-                    Comienza agregando productos.
+                    Comienza agregando productos
                 </p>
                 <hr />
                 <p className="mb-0">

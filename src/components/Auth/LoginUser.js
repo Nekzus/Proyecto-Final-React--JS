@@ -3,14 +3,15 @@ import { Link, useNavigate } from "react-router-dom";
 import { Form, Alert } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { userContext } from "../../Context/UserContext";
+import { useForm } from "../../hooks/useForm";
 
 const LoginUser = () => {
     const userResult = useContext(userContext);
     const { logIn } = userResult;
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate();
+    const [formValues, handleInputChange, reset] = useForm({ email: '', password: '', });
+    const { email, password } = formValues;
     const lastPath = localStorage.getItem('lastPath') || '/';
 
     const handleSubmit = async (e) => {
@@ -18,6 +19,7 @@ const LoginUser = () => {
         setError("");
         try {
             await logIn(email, password);
+            reset();
             navigate(lastPath);
         } catch (error) {
             console.log(error.code);
@@ -33,7 +35,6 @@ const LoginUser = () => {
                 setError('Error desconocido');
             }
         }
-
     };
 
     return (
@@ -44,16 +45,18 @@ const LoginUser = () => {
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Control
                             type="email"
+                            name="email"
                             placeholder="E-mail"
-                            onChange={(e) => setEmail(e.target.value)}
+                            onChange={handleInputChange}
                         />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Control
                             type="password"
+                            name="password"
                             placeholder="Contraseña"
-                            onChange={(e) => setPassword(e.target.value)}
+                            onChange={handleInputChange}
                         />
                     </Form.Group>
 

@@ -15,9 +15,11 @@ const SearchContainer = () => {
     return (
         <>
             <div className='container'>
-                {(q !== '') && (searchItems.length === 0)
-                    ? <MessageEmptySearch q={q} />
-                    : <ItemList items={searchItems} />}
+                {(q === '')
+                    ? <MessageEmptySearch q={q}/>
+                    : (q !== '') && (searchItems.length === 0)
+                        ? <MessageEmptySearch q={q} />
+                        : <ItemList items={searchItems} />}
             </div>
         </>
     )

@@ -39,7 +39,7 @@ const NavBar = () => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     {!isLogged && <NavLink className='navbar-brand' to="/auth/register">Creá tu cuenta</NavLink>}
-                    {isLogged && users && <Nav className="me-auto">{users.name}</Nav>}
+                    {isLogged && users && <Nav className="me-auto">Bienvenid@ {users.name}</Nav>}
                     {isLogged
                         ? <NavLink className='navbar-brand' to='#' onClick={handleLogOut}><FiPower /></NavLink>
                         : <NavLink className='navbar-brand' to="/auth/login">Ingresá</NavLink>}
@@ -47,7 +47,7 @@ const NavBar = () => {
                         <MenuCategories />
                     </Nav>
                     <Nav className="me-auto">
-                        {isLogged && <NavLink to='/orders'><Button className='btn btn-history btn-dark' >Historial ordenes</Button></NavLink>}
+                        <NavLink to='/orders'><Button className='btn btn-history btn-dark' >Mis compras</Button></NavLink>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
