@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import CartWidget from '../Cart/CartWidget';
 import Navbar from 'react-bootstrap/Navbar';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import { cartContext } from '../../Context/CartContext';
@@ -11,6 +11,7 @@ import SearchItems from '../Common/SearchItems';
 import { FiPower } from "react-icons/fi";
 import { userContext } from '../../Context/UserContext';
 import { useUser } from '../../hooks/useUser';
+import { HiArrowLeft } from 'react-icons/hi';
 
 const NavBar = () => {
     const cartResult = useContext(cartContext);
@@ -18,18 +19,22 @@ const NavBar = () => {
     const userResult = useContext(userContext);
     const { logOut } = userResult;
     const { isLogged, users } = useUser("");
+    const navigate = useNavigate();
+    const location = useLocation();
+    const { pathname } = location
 
     const handleLogOut = async () => {
         try {
             await logOut();
-        } catch (err) {
-            console.log(err.message);
+        } catch (error) {
+            console.log(error.message);
         }
     };
-
+    
     return (
         <Navbar className='fixed-top-nav fixed-top' collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container>
+                {(pathname !== '/') && <Button className="btn btn-history btn-dark p-3" onClick={() => { navigate(-1) }}><HiArrowLeft /> Volver</Button>}
                 <NavLink className='navbar-brand' to="/">CinesNKMAX</NavLink>
                 {cart.length !== 0 &&
                     <NavLink className='navbar-brand' to="/cart"><CartWidget /></NavLink>}

@@ -2,14 +2,12 @@ import React from 'react'
 import { Card, Image } from 'react-bootstrap';
 import { convertDateString, formatCurrency } from '../../helpers/helpers';
 import { useFetchOrders } from '../../hooks/useFetchOrders';
-import { useUser } from '../../hooks/useUser';
 import Loading from '../Common/Loading';
 import MessageEmptyOrder from '../Common/MessageEmptyOrder';
 
 const OrderListContainer = () => {
     const [orders, loading] = useFetchOrders();
-    const { user } = useUser("");
-
+    
     return (
         <>
             {loading
@@ -19,7 +17,6 @@ const OrderListContainer = () => {
                 : (orders.length === 0)
                     ? <MessageEmptyOrder />
                     : orders.map(order => (
-                        (order.buyer.email === user.email) &&
                         <div className="container p-2" key={order.id}>
                             <Card>
                                 <Card.Header>

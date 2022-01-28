@@ -15,8 +15,6 @@ const RegisterUser = () => {
     const { userName, email, password } = formValues;
     const lastPath = localStorage.getItem('lastPath') || '/';
 
-    console.log('Name: ', userName);
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError("");

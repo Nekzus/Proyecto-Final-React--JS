@@ -13,22 +13,22 @@ const AppRouter = () => {
     return (
         <div>
             <Routes>
-                <Route path="/auth/*" element={
-                    <PublicRoute>
-                        <AuthRouter />
-                    </PublicRoute>
-                }
-                />
                 <Route path="/*" element={
                     <PrivateRoute>
                         <DashboardRoutes />
                     </PrivateRoute>
                 }
                 />
+                <Route path="/auth/*" element={
+                    <PublicRoute>
+                        <AuthRouter />
+                    </PublicRoute>
+                }
+                />
                 <Route path="/" element={<ItemListContainer />} />;
                 <Route path="/categoria/:id" element={<ItemListContainer />} />;
                 <Route path="/item/:id" element={<ItemDetailContainer />} />;
-                <Route path="/search" element={<SearchContainer />} />; 
+                <Route path="/search" element={<SearchContainer />} />;
                 <Route path="/categoria" element={<Navigate to="/" />} />
             </Routes>
         </div>

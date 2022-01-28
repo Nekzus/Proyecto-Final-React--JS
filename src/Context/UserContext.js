@@ -55,7 +55,6 @@ const UserContext = ({ children }) => {
     
         return () => {
             setIsMounted(false);
-            setUsers([]);
         }
     }, [user, isMounted]);
 

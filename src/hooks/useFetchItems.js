@@ -16,11 +16,9 @@ export const useFetchItems = (category, id) => {
         const unsub = onSnapshot(q, (snapshot) => {
             setTimeout(() => {
                 try {
-                    if (isMounted) {
                         const results = snapshot.docs.map(doc => (doc.data()));
                         setItems(results);
                         setLoading(false);
-                    }
                 } catch (error) {
                     setError(error);
                     setLoading(false);

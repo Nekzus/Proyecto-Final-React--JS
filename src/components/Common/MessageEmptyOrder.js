@@ -7,7 +7,7 @@ const MessageEmptyOrder = () => {
             <Alert variant='dark' className='text-center'>
                 <Alert.Heading >No tienes compras realizadas</Alert.Heading>
                 <p>
-                    Comienza a operar con tu carrito.
+                    Comienza a operar con tu carrito
                 </p>
             </Alert>
         </div>

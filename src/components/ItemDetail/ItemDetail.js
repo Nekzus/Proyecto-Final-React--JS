@@ -6,7 +6,6 @@ import ItemCategories from '../Common/ItemCategories';
 import ItemCount from '../Common/ItemCount';
 import PriceItems from '../Common/PriceItems';
 import RatingStars from '../Common/RatingStars';
-import { HiArrowLeft } from 'react-icons/hi';
 import ItemStatus from '../Common/ItemStatus';
 
 const ItemDetail = ({ item }) => {
@@ -39,7 +38,6 @@ const ItemDetail = ({ item }) => {
         <Card className="container item-detail bg-dark">
             <div className="row" key={id} id={id}>
                 <div className="col-md-6" id="productImage">
-                    <button className="btn btn-return btn-dark mt-3 mb-3" onClick={() => { navigate(-1) }}><HiArrowLeft /> Volver</button>
                     <div className="image-detail" >
                         {<ItemStatus itemId={id} stock={stock} />}
                         <img src={backdrop_path} className="card-img-top p-2" alt={title} />

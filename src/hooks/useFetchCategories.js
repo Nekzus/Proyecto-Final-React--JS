@@ -14,10 +14,8 @@ export const useFetchCategories = () => {
         const unsub = onSnapshot(q, (snapshot) => {
             setTimeout(() => {
                 try {
-                    if (isMounted) {
                         const results = snapshot.docs.map(doc => (doc.data()));
                         setCategories(results);
-                    }
                 } catch (error) {
                     setError(error);
                     console.log('error consulta categorias');
