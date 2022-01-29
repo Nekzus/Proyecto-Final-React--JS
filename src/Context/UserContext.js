@@ -39,33 +39,37 @@ const UserContext = ({ children }) => {
 
     useEffect(() => {
         setIsMounted(true);
+        if(isMounted) {
         const collectionRef = collection(db, 'users');
         const q = query(collectionRef, orderBy('email', 'asc'));
         const unsub = onSnapshot(q, (snapshot) => {
             try {
                     const results = snapshot.docs.map(doc => (doc.data()));
                     const userDB = results.find(users => users.email === user.email);
-                    isMounted && setUsers(userDB);
+                    setUsers(userDB);
                 
             } catch (error) {
                 setError(error);
             }
             return unsub;
-        });
-    
+        }); 
+        }
         return () => {
             setIsMounted(false);
+            setUsers([]);
         }
     }, [user, isMounted]);
 
     useEffect(() => {
+        setIsMounted(true);
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            setUser(currentUser);
+            isMounted && setUser(currentUser);
         });
         return () => {
+            setIsMounted(false);
             unsubscribe();
         }
-    }, []);
+    }, [isMounted]);
 
     const valueContext = {
         signUp,

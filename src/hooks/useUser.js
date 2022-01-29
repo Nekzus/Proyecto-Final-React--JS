@@ -5,7 +5,6 @@ export const useUser = () => {
     const userResult = useContext(userContext);
     const { user, users, error } = userResult;
 
-
     return {
         isLogged: Boolean(user),
         user,

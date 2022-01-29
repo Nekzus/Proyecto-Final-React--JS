@@ -41,7 +41,7 @@ const RegisterUser = () => {
     return (
         <>
             <div className="p-4 box">
-                <h2 className="mb-3">Registrate</h2>
+                <h2 className="mb-3 text-center">Registrate</h2>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="formBasicName">
                         <Form.Control

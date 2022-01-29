@@ -40,7 +40,7 @@ const LoginUser = () => {
     return (
         <>
             <div className="p-4 box">
-                <h2 className="mb-3">Inicia sesión</h2>
+                <h2 className="mb-3 text-center">Inicia sesión</h2>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Control

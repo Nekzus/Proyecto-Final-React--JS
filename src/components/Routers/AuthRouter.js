@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import LoginUser from '../Auth/LoginUser';
 import RegisterUser from '../Auth/RegisterUser';
+import NotFound from '../NotFound/NotFound';
 
 const AuthRouter = () => {
     return (
@@ -10,6 +11,7 @@ const AuthRouter = () => {
                 <Routes>
                     <Route path="login" element={<LoginUser />} />
                     <Route path="register" element={<RegisterUser />} />
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
             </div>
         </div>

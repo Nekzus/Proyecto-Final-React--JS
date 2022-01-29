@@ -1,9 +1,13 @@
 @import './base/settings';
 @import './base/base';
 @import './components/auth';
+@import './components/navbar';
 @import './components/modals';
 
-
+.title__site {
+  font-family: 'El Messiri', sans-serif;
+  font-size: 3.5rem;
+}
 #root {
   display: flex;
   flex-direction: column;
@@ -186,9 +190,6 @@
   color: white;
   width: 3rem;
 }
-#contenido-header {
-  padding: 3.5rem;
-}
 .trash-icon {
   color: white;
   font-size: 1.15rem;
@@ -255,5 +256,23 @@
 
 .image-item {
   position: relative;
+}
+
+.offcanvas-body {
+  background-color: $primary;
+}
+
+.offcanvas-header {
+  background-color: $dark-grey;
+}
+
+.offcanvas__title {
+  color: $light-grey;
+}
+
+.btn__canvas {
+  color: $light-grey;
+  font-size: 1rem;
+  vertical-align: middle;
 }
 
