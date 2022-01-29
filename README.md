@@ -1,8 +1,8 @@
 
 # E-Commerce: Cines NKMAX 
 
-<p>
-<img src="https://firebasestorage.googleapis.com/v0/b/dbcinenkmax-17010.appspot.com/o/Readme.md%2FLogoNkMaxShadow.png?alt=media&token=1463fc04-ae5b-478a-8578-16a7081479eb" 
+<p align="center">
+<img src="https://firebasestorage.googleapis.com/v0/b/dbcinenkmax-17010.appspot.com/o/Readme.md%2Fmini_LogoNkMaxShadowMin.png?alt=media&token=55faec47-0f5f-4d00-b59c-4591a0e1beb2" 
 height="250">
 </p>
 
