@@ -6,48 +6,48 @@
 height="250">
 </p>
 
-## Sobre mi
+## Sobre mi 👀
+
+Estudiante de las nuevas tecnologías en [CoderHouse](https://www.coderhouse.com/), me encuentro cursando la carrera de Desarrollador Full Stack. Siempre me gusto la programación, de origen en la rama de la electrónica, decidí convertir el hobby en profesión.
+
+
+## Descripción del proyecto 🚀
 
 Datos a completar.
 
+## Estado del proyecto 📋
 
-## Descripción del proyecto
+✅ Completo - finalizado.
 
-Datos a completar.
+## Tecnología aplicada 🛠️
 
-## Estado del proyecto
-
-Completo - finalizado.
-
-## Tecnología aplicada
-
-- [React JS](https://reactjs.org/) [(v17.0.2)](https://reactjs.org/)
-- [React Bootstrap](https://react-bootstrap.github.io/) [(v2.0.4)](https://react-bootstrap.github.io/)
-- [React Icons](https://react-icons.github.io/react-icons/) [(v4.3.1)](https://react-icons.github.io/react-icons/)
-- [React Router Dom](https://reactrouter.com/docs/en/v6) [(v6.0.2)](https://reactrouter.com/docs/en/v6)
-- [React Toastify](https://www.npmjs.com/package/react-toastify) [(v8.1.0)](https://www.npmjs.com/package/react-toastify)
-- [Firebase](https://firebase.google.com/) [(v9.6.1)](https://firebase.google.com/)
-- [Query String](https://www.npmjs.com/package/query-string) [(v7.1.0)](https://www.npmjs.com/package/query-string)
-- [Node Sass](https://www.npmjs.com/package/node-sass) [(v6.0.1)](https://www.npmjs.com/package/node-sass)
+- [React JS](https://reactjs.org/) [(v17.0.2)](https://reactjs.org/) - Librería base del proyecto
+- [React Bootstrap](https://react-bootstrap.github.io/) [(v2.0.4)](https://react-bootstrap.github.io/) - Utilazada para estilizar la estructura del proyecto
+- [React Icons](https://react-icons.github.io/react-icons/) [(v4.3.1)](https://react-icons.github.io/react-icons/) - Utilizada para mejorar la visual de los enlaces mediante iconos
+- [React Router Dom](https://reactrouter.com/docs/en/v6) [(v6.0.2)](https://reactrouter.com/docs/en/v6) - Se aplico para la gestion de las rutas
+- [React Toastify](https://www.npmjs.com/package/react-toastify) [(v8.1.0)](https://www.npmjs.com/package/react-toastify) - Utilizada para mostrar errores de stock durante el checkout
+- [Firebase](https://firebase.google.com/) [(v9.6.1)](https://firebase.google.com/) - Base de datos utilizada para almacenar los datos y gestionar la autenticacion de los usuarios
+- [Query String](https://www.npmjs.com/package/query-string) [(v7.1.0)](https://www.npmjs.com/package/query-string) - Utlizada para la gestion de los parametros de la url durante las busquedas por titulo
+- [Node Sass](https://www.npmjs.com/package/node-sass) [(v6.0.1)](https://www.npmjs.com/package/node-sass) - Utilizada para la gestión de los estilos de ventanas, enlaces, etc.
 
 
-## Vista previa del proyecto (demo)
+## Vista previa del proyecto (demo) 📦
 
-Pueden ver la web funcionando [aquí](https://dbcinenkmax-17010.web.app/).
+🌎 Pueden ver la web desplegada funcionando [aquí](https://dbcinenkmax-17010.web.app/), utilizando hosting de Firebase.
 
-### Login de usuario
+### <ins>Login de usuario
 <p align="center">
 <img src="https://firebasestorage.googleapis.com/v0/b/dbcinenkmax-17010.appspot.com/o/Readme.md%2FCines%20NkMax%20-%20Login.gif?alt=media&token=17dc2728-e8bf-49ad-aac5-3635799d3451" 
 height="400">
 </p>
 
-### Generacion compra
+### <ins>Generación compra
 <p align= "center">
 <img src="https://firebasestorage.googleapis.com/v0/b/dbcinenkmax-17010.appspot.com/o/Readme.md%2FCines%20NkMax%20-%20Order.gif?alt=media&token=dcc82e63-25c6-4651-964d-6f90ea7376cb" 
 height="400">
 </p>
 
-## Capturas de pantalla
+## Capturas de pantalla 📷
 
 <p align="center">
 <img src="https://firebasestorage.googleapis.com/v0/b/dbcinenkmax-17010.appspot.com/o/Readme.md%2F1-mini_Inicio.png?alt=media&token=3d0e3bf3-54f9-4d9c-b469-1e5428b8818f" 
@@ -70,7 +70,11 @@ height="300" width="400">
 height="300" width="400">
 </p>
 
-## Licencia
+## Autoría ✒️
 
-- Copyright 2021 [`NEKZUS`](https://github.com/Nekzus).
+- Mauricio Ortega
+-
+## Licencia 📄
+
+- ©️Copyright 2021 [`NEKZUS`](https://github.com/Nekzus).
 
