@@ -1,5 +1,5 @@
 
-# E-Commerce: Cines NKMAX 
+# <p align="center"><font face = "El Messiri" size = 7>Cines NKMAX</font></p> 
 
 <p align="center">
 <img src="https://firebasestorage.googleapis.com/v0/b/dbcinenkmax-17010.appspot.com/o/Readme.md%2Fmini_LogoNkMaxShadowMin.png?alt=media&token=55faec47-0f5f-4d00-b59c-4591a0e1beb2" 
@@ -65,7 +65,7 @@ Para los casos de operación exitosa, se muestra un mensaje de confirmación de 
 height="400">
 </p>
 
-### <ins>Generación compra
+### <ins>Generación de compra
 <p align= "center">
 <img src="https://firebasestorage.googleapis.com/v0/b/dbcinenkmax-17010.appspot.com/o/Readme.md%2FCines%20NkMax%20-%20Order.gif?alt=media&token=dcc82e63-25c6-4651-964d-6f90ea7376cb" 
 height="400">
@@ -96,9 +96,9 @@ height="300" width="400">
 
 ## Autoría ✒️
 
-- Mauricio Ortega
+- Mauricio Ortega - Desarrollo y programación
   
 ## Licencia 📄
 
-- ©️Copyright 2021 [`NEKZUS`](https://github.com/Nekzus).
+- ©️Copyright 2021 [`NEKZUS`](https://www.linkedin.com/in/mauricio-sebasti%C3%A1n-ortega-71b43788).
 
