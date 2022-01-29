@@ -60,6 +60,19 @@ Para los casos de operación exitosa, se muestra un mensaje de confirmación de 
 
 🌎 Pueden ver la web desplegada funcionando [aquí](https://dbcinenkmax-17010.web.app/), utilizando el hosting de Firebase.
 
+### Usuario de prueba
+
+- E-mail
+
+  ```sh
+  elonmusk@starlink.com
+  ```
+
+- Contraseña
+  ```sh
+  123456
+  ```
+  
 ### <ins>Login de usuario
 <p align="center">
 <img src="https://firebasestorage.googleapis.com/v0/b/dbcinenkmax-17010.appspot.com/o/Readme.md%2FCines%20NkMax%20-%20Login.gif?alt=media&token=17dc2728-e8bf-49ad-aac5-3635799d3451" 
