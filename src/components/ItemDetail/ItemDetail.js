@@ -28,7 +28,7 @@ const ItemDetail = ({ item }) => {
     };
 
     const handleCart = () => {
-        navigate(`/cart`);
+        navigate(`/dash/cart`);
     }
     const handleContinue = () => {
         navigate(-1);
