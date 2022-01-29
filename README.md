@@ -30,12 +30,22 @@ Completo - finalizado.
 - [Query String](https://www.npmjs.com/package/query-string) [(v7.1.0)](https://www.npmjs.com/package/query-string)
 - [Node Sass](https://www.npmjs.com/package/node-sass) [(v6.0.1)](https://www.npmjs.com/package/node-sass)
 
-Tecnologias a completar.
-
 
 ## Vista previa del proyecto (demo)
 
 Pueden ver la web funcionando [aquí](https://dbcinenkmax-17010.web.app/).
+
+### Login de usuario
+<p align="center">
+<img src="https://firebasestorage.googleapis.com/v0/b/dbcinenkmax-17010.appspot.com/o/Readme.md%2FCines%20NkMax%20-%20Login.gif?alt=media&token=17dc2728-e8bf-49ad-aac5-3635799d3451" 
+height="400">
+</p>
+
+### Generacion compra
+<p align= "center">
+<img src="https://firebasestorage.googleapis.com/v0/b/dbcinenkmax-17010.appspot.com/o/Readme.md%2FCines%20NkMax%20-%20Order.gif?alt=media&token=dcc82e63-25c6-4651-964d-6f90ea7376cb" 
+height="400">
+</p>
 
 ## Capturas de pantalla
 
