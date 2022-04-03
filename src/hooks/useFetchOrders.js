@@ -16,19 +16,17 @@ export const useFetchOrders = () => {
         const collectionRef = collection(db, 'orders');
         const q = query(collectionRef, orderBy('date', 'desc'));
         const unsub = onSnapshot(q, (snapshot) => {
-            setTimeout(() => {
-                try {
-                        const results = snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
-                        const userDB = results.filter(order => order.buyer.email === user.email);
-                        setOrders(userDB);
-                        setLoading(false);
-                } catch (error) {
-                    setError(error);
-                    setLoading(false);
-                    console.log('error consulta ordenes');
-                }
-                return unsub;
-            }, 2000);
+            try {
+                const results = snapshot.docs.map(doc => ({...doc.data(), id: doc.id }));
+                const userDB = results.filter(order => order.buyer.email === user.email);
+                setOrders(userDB);
+                setLoading(false);
+            } catch (error) {
+                setError(error);
+                setLoading(false);
+                console.log('error consulta ordenes');
+            }
+            return unsub;
         })
     };
 

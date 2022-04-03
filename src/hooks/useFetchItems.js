@@ -14,28 +14,24 @@ export const useFetchItems = (category, id) => {
         const collectionRef = collection(db, 'movies');
         const q = query(collectionRef, selectQuery);
         const unsub = onSnapshot(q, (snapshot) => {
-            setTimeout(() => {
-                try {
-                        const results = snapshot.docs.map(doc => (doc.data()));
-                        setItems(results);
-                        setLoading(false);
-                } catch (error) {
-                    setError(error);
-                    setLoading(false);
-                    console.log('error consulta items');
-                }
-                return unsub;
-            }, 2000);
+            try {
+                const results = snapshot.docs.map(doc => (doc.data()));
+                setItems(results);
+                setLoading(false);
+            } catch (error) {
+                setError(error);
+                setLoading(false);
+                console.log('error consulta items');
+            }
+            return unsub;
         });
     };
     useEffect(() => {
         setIsMounted(true);
         if (isMounted) {
-            (!category)
-                ? (!id)
-                    ? fetchReadItemsQuery(orderBy('vote_average', 'desc'))
-                    : fetchReadItemsQuery(where('id', '==', Number(id)))
-                : fetchReadItemsQuery(where('genre_ids', 'array-contains', Number(category)));
+            (!category) ?
+            (!id) ?
+            fetchReadItemsQuery(orderBy('vote_average', 'desc')): fetchReadItemsQuery(where('id', '==', Number(id))): fetchReadItemsQuery(where('genre_ids', 'array-contains', Number(category)));
         }
         return () => {
             setIsMounted(false);

@@ -12,16 +12,14 @@ export const useFetchCategories = () => {
         const collectionRef = collection(db, 'categories');
         const q = query(collectionRef, orderBy('name', 'asc'));
         const unsub = onSnapshot(q, (snapshot) => {
-            setTimeout(() => {
-                try {
-                        const results = snapshot.docs.map(doc => (doc.data()));
-                        setCategories(results);
-                } catch (error) {
-                    setError(error);
-                    console.log('error consulta categorias');
-                }
-                return unsub;
-            }, 2000);
+            try {
+                const results = snapshot.docs.map(doc => (doc.data()));
+                setCategories(results);
+            } catch (error) {
+                setError(error);
+                console.log('error consulta categorias');
+            }
+            return unsub;
         })
     };
 
