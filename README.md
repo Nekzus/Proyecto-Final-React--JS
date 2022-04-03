@@ -3,7 +3,7 @@
 ## <p align="center"><font face = "El Messiri">E-Commerce Tickets Películas</font></p>
 
 <p align="center">
-<img src="https://firebasestorage.googleapis.com/v0/b/dbcinenkmax-17010.appspot.com/o/Readme.md%2FLogoNkMaxShadow.png?alt=media&token=1463fc04-ae5b-478a-8578-16a7081479eb" 
+<img src="https://i.imgur.com/pAtDXhm.png" 
 height="250">
 </p>
 
@@ -75,36 +75,36 @@ Para los casos de operación exitosa, se muestra un mensaje de confirmación de 
   
 ### <ins>Login de usuario
 <p align="center">
-<img src="https://firebasestorage.googleapis.com/v0/b/dbcinenkmax-17010.appspot.com/o/Readme.md%2FCines%20NkMax%20-%20Login.gif?alt=media&token=17dc2728-e8bf-49ad-aac5-3635799d3451" 
+<img src="https://i.imgur.com/2goK4BC.gif" 
 height="400">
 </p>
 
 ### <ins>Generación de compra
 <p align= "center">
-<img src="https://firebasestorage.googleapis.com/v0/b/dbcinenkmax-17010.appspot.com/o/Readme.md%2FCines%20NkMax%20-%20Order.gif?alt=media&token=dcc82e63-25c6-4651-964d-6f90ea7376cb" 
+<img src="https://i.imgur.com/9YKqnfp.gif" 
 height="400">
 </p>
 
 ## Capturas de pantalla 📷
 
 <p align="center">
-<img src="https://firebasestorage.googleapis.com/v0/b/dbcinenkmax-17010.appspot.com/o/Readme.md%2F1-mini_Inicio.png?alt=media&token=3d0e3bf3-54f9-4d9c-b469-1e5428b8818f" 
+<img src="https://i.imgur.com/WcpWar5.png" 
 height="300" width="400">
-<img src="https://firebasestorage.googleapis.com/v0/b/dbcinenkmax-17010.appspot.com/o/Readme.md%2F4-mini_Catalog.png?alt=media&token=075a04c3-b2d6-4717-a97a-7efa87e00574" 
+<img src="https://i.imgur.com/KeGuOjP.png" 
 height="300" width="400">
-<img src="https://firebasestorage.googleapis.com/v0/b/dbcinenkmax-17010.appspot.com/o/Readme.md%2F2-mini_Login.png?alt=media&token=fd57b517-9f23-4abd-b038-6f80b2041dce" 
+<img src="https://i.imgur.com/xfWRKtg.png" 
 height="300" width="400">
-<img src="https://firebasestorage.googleapis.com/v0/b/dbcinenkmax-17010.appspot.com/o/Readme.md%2F3-mini_Register.png?alt=media&token=9d4329bc-0b14-461e-a646-e7be006c170c" 
+<img src="https://i.imgur.com/dnf3BU9.png" 
 height="300" width="400">
-<img src="https://firebasestorage.googleapis.com/v0/b/dbcinenkmax-17010.appspot.com/o/Readme.md%2F5-mini_Item%20Detail.png?alt=media&token=238a2ca1-c8e1-424c-9fdb-f27378600939" 
+<img src="https://i.imgur.com/U9xypnE.png" 
 height="300" width="400">
-<img src="https://firebasestorage.googleapis.com/v0/b/dbcinenkmax-17010.appspot.com/o/Readme.md%2F6-mini_Item%20Detail%202.png?alt=media&token=05d323f2-350f-4f0a-8e12-f0fa38fc2688" 
+<img src="https://i.imgur.com/FZxAiGK.png" 
 height="300" width="400">
-<img src="https://firebasestorage.googleapis.com/v0/b/dbcinenkmax-17010.appspot.com/o/Readme.md%2F7-mini_cart.png?alt=media&token=9d3eb1f9-04aa-46ac-bcbf-cfde223f9f14" 
+<img src="https://i.imgur.com/WazfrJY.png" 
 height="300" width="400">
-<img src="https://firebasestorage.googleapis.com/v0/b/dbcinenkmax-17010.appspot.com/o/Readme.md%2F8-mini_Order%20list.png?alt=media&token=623fefac-225d-40c0-8fe0-e4365a1a37ec" 
+<img src="https://i.imgur.com/0JqIDj4.png" 
 height="300" width="400">
-<img src="https://firebasestorage.googleapis.com/v0/b/dbcinenkmax-17010.appspot.com/o/Readme.md%2F9-mini_Offcanvas.png?alt=media&token=1281065a-89d5-4a02-95f9-cdba47f8b3a9" 
+<img src="https://i.imgur.com/a4dbjZl.png" 
 height="300" width="400">
 </p>
 
